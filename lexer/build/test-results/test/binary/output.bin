@@ -1,10 +1,10 @@
- lexer.tokens.LetToken@11997b5c
-let
-str
-:
-string
-=
-"some string"
-;
-null
-±[lexer.tokens.LetToken@59161250, lexer.tokens.IdentifierToken@74b9cb4e, lexer.tokens.TypeAssignationToken@4abb9bd5, lexer.tokens.StringTypeToken@5fe2679f, lexer.tokens.AssignationToken@360f7aa1, lexer.tokens.StringValueToken@cd62495, lexer.tokens.SemicolonToken@1a2573e9, lexer.tokens.EOFToken@56b721ad]
+lexer.tokens.LetToken@6e7a6833
+let
+str
+:
+string
+=
+"some string"
+;
+null
+±[lexer.tokens.LetToken@363e23b5, lexer.tokens.IdentifierToken@2775133e, lexer.tokens.TypeAssignationToken@4c04d243, lexer.tokens.StringTypeToken@65a25789, lexer.tokens.AssignationToken@22c6f303, lexer.tokens.StringValueToken@2d25f886, lexer.tokens.SemicolonToken@47d9a1ab, lexer.tokens.EOFToken@30b0a8c6]

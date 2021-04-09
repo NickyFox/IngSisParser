@@ -5,9 +5,7 @@ plugins {
 
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-
-repositories {
+ repositories {
     mavenCentral()
 }
 
@@ -18,3 +16,17 @@ dependencies {
     compile project(':interpreter')
     compile project(':common')
 }
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.5
+            }
+        }
+    }
+}
+
+tasks.build.dependsOn(jacocoTestCoverageVerification)
