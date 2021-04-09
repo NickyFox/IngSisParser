@@ -18,7 +18,8 @@ dependencies {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
-//
+
+
 //task jacocoMerge(type: JacocoMerge) {
 //    def cliDir = project(':lexer').projectDir
 //    def parserDir = project(':parser').projectDir

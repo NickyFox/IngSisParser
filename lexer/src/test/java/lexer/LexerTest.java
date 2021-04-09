@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -61,7 +62,6 @@ public class LexerTest {
     public void lexDifferentDeclarations() {
         String declaration1 = "let str: string = \"some string\";";
         List<Token> tokens1 = lexer.lex(declaration1);
-        System.out.println(tokens1.size());
         Assert.assertEquals(tokens1.size(), 8);
 
         String declaration2 = "let bool: boolean = true;";
@@ -70,7 +70,6 @@ public class LexerTest {
 
         String declaration3 = "let bool: boolean = (2-2) != 0;";
         List<Token> tokens3 = lexer.lex(declaration3);
-        System.out.println(tokens3.size());
         Assert.assertEquals(tokens3.size(), 12);
 
 
@@ -92,7 +91,7 @@ public class LexerTest {
 
         String declaration8 = "if(true) {print(\"some string\");};";
         List<Token> tokens8 = lexer.lex(declaration8);
-        tokens8.forEach(x -> System.out.println(x.getValue()));
+        List<Token> expectedResult = new ArrayList<>();
         Assert.assertEquals(tokens8.size(), 13);
 
     }

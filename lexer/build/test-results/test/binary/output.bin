@@ -1,19 +1,4 @@
-8
-12
-if
-(
-true
-)
-{
-print
-(
-"some string"
-)
-;
-}
-;
-null
-lexer.tokens.LetToken@f06367b
+ lexer.tokens.LetToken@11997b5c
 let
 str
 :
@@ -22,4 +7,4 @@
 "some string"
 ;
 null
-²[lexer.tokens.LetToken@54e80846, lexer.tokens.IdentifierToken@5a780229, lexer.tokens.TypeAssignationToken@1143b3dc, lexer.tokens.StringTypeToken@2f48fa61, lexer.tokens.AssignationToken@3b766df6, lexer.tokens.StringValueToken@218559fb, lexer.tokens.SemicolonToken@2dd4d344, lexer.tokens.EOFToken@4527af6d]
+±[lexer.tokens.LetToken@59161250, lexer.tokens.IdentifierToken@74b9cb4e, lexer.tokens.TypeAssignationToken@4abb9bd5, lexer.tokens.StringTypeToken@5fe2679f, lexer.tokens.AssignationToken@360f7aa1, lexer.tokens.StringValueToken@cd62495, lexer.tokens.SemicolonToken@1a2573e9, lexer.tokens.EOFToken@56b721ad]
