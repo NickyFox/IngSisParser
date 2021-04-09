@@ -17,16 +17,16 @@ dependencies {
     compile project(":common")
 }
 
-//jacocoTestCoverageVerification {
-//    violationRules {
-//        rule {
-//            limit {
-//                counter = 'LINE'
-//                value = 'COVEREDRATIO'
-//              //  minimum = 0.8
-//            }
-//        }
-//    }
-//}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+              //  minimum = 0.8
+            }
+        }
+    }
+}
 
 //tasks.build.dependsOn(jacocoTestCoverageVerification)
