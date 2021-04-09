@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lexer.DefaultLexerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-03-25T22:53:28" hostname="DESKTOP-PV1IET0" time="0.036">
+  <properties/>
+  <testcase name="lex" classname="lexer.DefaultLexerTest" time="0.036"/>
+  <system-out><![CDATA[let
+str
+:
+string
+=
+"some string"
+;
+null
+[lexer.tokens.LetToken@d508b0, lexer.tokens.IdentifierToken@110ef6f8, lexer.tokens.TypeAssignationToken@1031b0e1, lexer.tokens.StringTypeToken@3ebb75b2, lexer.tokens.AssignationToken@16037a5d, lexer.tokens.StringValueToken@705ce753, lexer.tokens.SemicolonToken@6df7e701, lexer.tokens.EOFToken@88419e8]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
