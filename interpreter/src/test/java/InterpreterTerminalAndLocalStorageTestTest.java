@@ -68,4 +68,9 @@ public class InterpreterTerminalAndLocalStorageTestTest {
         strValue.times((Value) new StringValue("some"));
     }
 
+    @Test
+    public void interpreterBooleanValueTest() {
+
+    }
+
 }
