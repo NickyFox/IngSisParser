@@ -1,9 +1,25 @@
-let
-str
-:
-string
-=
+8
+12
+if
+(
+true
+)
+{
+print
+(
 "some string"
+)
+;
+}
 ;
 null
-¯[lexer.tokens.LetToken@d508b0, lexer.tokens.IdentifierToken@110ef6f8, lexer.tokens.TypeAssignationToken@1031b0e1, lexer.tokens.StringTypeToken@3ebb75b2, lexer.tokens.AssignationToken@16037a5d, lexer.tokens.StringValueToken@705ce753, lexer.tokens.SemicolonToken@6df7e701, lexer.tokens.EOFToken@88419e8]
+lexer.tokens.LetToken@f06367b
+let
+str
+:
+string
+=
+"some string"
+;
+null
+²[lexer.tokens.LetToken@54e80846, lexer.tokens.IdentifierToken@5a780229, lexer.tokens.TypeAssignationToken@1143b3dc, lexer.tokens.StringTypeToken@2f48fa61, lexer.tokens.AssignationToken@3b766df6, lexer.tokens.StringValueToken@218559fb, lexer.tokens.SemicolonToken@2dd4d344, lexer.tokens.EOFToken@4527af6d]

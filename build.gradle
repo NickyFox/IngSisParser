@@ -1,16 +1,55 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 group 'Printscript'
 version '1.0-SNAPSHOT'
-
-sourceCompatibility = 11.0
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'junit', name: 'junit', version: '4.13'
 }
+
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+//
+//task jacocoMerge(type: JacocoMerge) {
+//    def cliDir = project(':lexer').projectDir
+//    def parserDir = project(':parser').projectDir
+//
+//    def cliDirTest = "$cliDir\\build\\jacoco\\test.exec"
+//    def parserDirTest = "$parserDir\\build\\jacoco\\test.exec"
+//
+//    executionData(cliDirTest, parserDirTest)
+//    destinationFile(new File("$projectDir\\build\\jacoco\\test.exec"))
+//    jacocoTestReport {
+//        reports {
+//            html.enabled = true
+//        }
+//
+//        afterEvaluate {
+//            classDirectories.from(classDirectories.files.collect {
+//                fileTree(dir: '.', include: '**/build/classes/')
+//            })
+//        }
+//    }
+//}
+//
+//task testReport(type: TestReport) {
+//    destinationDir = file("$buildDir/reports/allTests")
+//    reportOn subprojects*.test
+//}
+//
+//task jacocoMerger(dependsOn: ['jacocoMerge', 'testReport']) {
+//
+//}
+//test {
+//    useJUnitPlatform()
+//    finalizedBy jacocoTestReport // report is always generated after tests run
+//}

@@ -16,6 +16,7 @@ public class DefaultFileReader implements FileReader {
                 stringBuilder.append(st.replace("\n",""));
         } catch (RuntimeException | IOException e) {
             System.out.println(e);
+            throw new RuntimeException();
         }
         return stringBuilder.toString();
     }

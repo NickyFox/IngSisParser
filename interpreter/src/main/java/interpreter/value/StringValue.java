@@ -19,6 +19,7 @@ public class StringValue implements Value {
         return new StringValue(v + value.getValue());
     }
 
+
     @Override
     public Value divide(Value value) {
         return value.divide(this);

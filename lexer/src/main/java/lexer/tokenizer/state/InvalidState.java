@@ -34,7 +34,7 @@ public class InvalidState implements TokenizerState {
     @Override
     public String toString() {
         return "InvalidState{" +
-                "token=" + token +
+                "token=" + token.getValue() +
                 '}';
     }
 }
