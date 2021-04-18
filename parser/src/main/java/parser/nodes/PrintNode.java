@@ -4,27 +4,24 @@ import parser.ASTVisitor;
 
 public class PrintNode implements ASTNode {
 
-    private ExpressionNode expressionNode;
+  private ExpressionNode expressionNode;
 
-    public PrintNode(ExpressionNode expressionNode) {
-        this.expressionNode = expressionNode;
-    }
+  public PrintNode(ExpressionNode expressionNode) {
+    this.expressionNode = expressionNode;
+  }
 
-    public PrintNode() {
+  public PrintNode() {}
 
-    }
+  public void setExpressionNode(ExpressionNode expressionNode) {
+    this.expressionNode = expressionNode;
+  }
 
-    public void setExpressionNode(ExpressionNode expressionNode) {
-        this.expressionNode = expressionNode;
-    }
+  public ExpressionNode getExpressionNode() {
+    return expressionNode;
+  }
 
-    public ExpressionNode getExpressionNode() {
-        return expressionNode;
-    }
-
-    @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visit(this);
-    }
-
+  @Override
+  public void accept(ASTVisitor visitor) {
+    visitor.visit(this);
+  }
 }

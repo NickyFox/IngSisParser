@@ -1,26 +1,25 @@
 package lexer.tokens;
 
-import lexer.TokenVisitor;
-
 import java.util.regex.Pattern;
+import lexer.TokenVisitor;
 
 public class StringValueToken extends Token {
 
-    public StringValueToken() {
-        super(Pattern.compile("\".*\"", Pattern.MULTILINE));
-    }
+  public StringValueToken() {
+    super(Pattern.compile("\".*\"", Pattern.MULTILINE));
+  }
 
-    public StringValueToken(String value) {
-        super(Pattern.compile("\".*\"", Pattern.MULTILINE), value);
-    }
+  public StringValueToken(String value) {
+    super(Pattern.compile("\".*\"", Pattern.MULTILINE), value);
+  }
 
-    @Override
-    public Token withValue(String value) {
-        return new StringValueToken(value);
-    }
-    @Override
-    public void accept(TokenVisitor visitor) {
-        visitor.visit(this);
-    }
+  @Override
+  public Token withValue(String value) {
+    return new StringValueToken(value);
+  }
 
+  @Override
+  public void accept(TokenVisitor visitor) {
+    visitor.visit(this);
+  }
 }

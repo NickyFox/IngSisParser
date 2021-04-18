@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'com.novoda.static-analysis'
 }
 
 version '1.0-SNAPSHOT'
@@ -25,4 +26,6 @@ jacocoTestCoverageVerification {
     }
 }
 
-tasks.build.dependsOn(jacocoTestCoverageVerification)
+
+
+//tasks.build.dependsOn(jacocoTestCoverageVerification)

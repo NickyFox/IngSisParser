@@ -1,10 +1,12 @@
+import interpreter.*;
 import org.junit.Test;
 
 public class InterpreterTest {
 
-    @Test
-    public void interpreterTest(){
+  Console console = new Terminal();
+  Memory memory = new LocalStorage();
+  Interpreter interpreter = new Interpreter(console, memory);
 
-    }
-
+  @Test
+  public void interpreterTest() {}
 }

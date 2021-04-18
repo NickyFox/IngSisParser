@@ -6,25 +6,22 @@ import parser.nodes.DeclarationNode;
 import parser.nodes.ExpressionNode;
 import parser.nodes.IdentifierNode;
 
-
 public class DeclarationParserState extends AbstractParserState {
 
-    private DeclarationNode declarationNode;
+  private DeclarationNode declarationNode;
 
-    @Override
-    public ASTNode getNode() {
-        return this.declarationNode;
-    }
+  @Override
+  public ASTNode getNode() {
+    return this.declarationNode;
+  }
 
-    @Override
-    public void visit(IdentifierToken token) {
-        getTokenProvider().next();
-        TypeAssignationParserState state = new TypeAssignationParserState();
-        ExpressionNode type = (ExpressionNode) state.parse(getTokenProvider());
+  @Override
+  public void visit(IdentifierToken token) {
+    getTokenProvider().next();
+    TypeAssignationParserState state = new TypeAssignationParserState();
+    ExpressionNode type = (ExpressionNode) state.parse(getTokenProvider());
 
-        this.declarationNode = new DeclarationNode(
-                new IdentifierNode(token.getValue()),
-                state.getType(),
-                type);
-    }
+    this.declarationNode =
+        new DeclarationNode(new IdentifierNode(token.getValue()), state.getType(), type);
+  }
 }

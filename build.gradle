@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id "com.github.sherter.google-java-format" version "0.9"
+    id 'com.novoda.static-analysis' version '1.2'
 }
 
 group 'Printscript'
@@ -18,6 +20,19 @@ dependencies {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
+
+staticAnalysis {
+    penalty {
+        maxErrors = 0
+        maxWarnings = 0
+    }
+    checkstyle {}
+}
+
+
+tasks.build.dependsOn(tasks.evaluateViolations)
+tasks.build.dependsOn(tasks.googleJavaFormat)
+verifyGoogleJavaFormat.mustRunAfter(tasks.googleJavaFormat)
 
 //jacocoTestCoverageVerification {
 //    violationRules {

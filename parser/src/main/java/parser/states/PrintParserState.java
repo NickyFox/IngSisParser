@@ -7,20 +7,21 @@ import parser.nodes.PrintNode;
 
 public class PrintParserState extends AbstractParserState {
 
-    private PrintNode printNode;
+  private PrintNode printNode;
 
-    public PrintParserState() {
-        this.printNode = new PrintNode();
-    }
+  public PrintParserState() {
+    this.printNode = new PrintNode();
+  }
 
-    @Override
-    public ASTNode getNode() {
-        return this.printNode;
-    }
+  @Override
+  public ASTNode getNode() {
+    return this.printNode;
+  }
 
-    @Override
-    public void visit(OpenParenthesisToken token) {
-        getTokenProvider().next();
-        this.printNode.setExpressionNode((ExpressionNode) new OpenParenthesisParserState().parse(getTokenProvider()));
-    }
+  @Override
+  public void visit(OpenParenthesisToken token) {
+    getTokenProvider().next();
+    this.printNode.setExpressionNode(
+        (ExpressionNode) new OpenParenthesisParserState().parse(getTokenProvider()));
+  }
 }

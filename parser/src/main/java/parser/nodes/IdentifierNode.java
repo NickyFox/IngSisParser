@@ -4,18 +4,18 @@ import parser.ASTVisitor;
 
 public class IdentifierNode extends ExpressionNode {
 
-    private String identifier;
+  private String identifier;
 
-    public IdentifierNode(String identifier) {
-        this.identifier = identifier;
-    }
+  public IdentifierNode(String identifier) {
+    this.identifier = identifier;
+  }
 
-    public String getIdentifier() {
-        return identifier;
-    }
+  public String getIdentifier() {
+    return identifier;
+  }
 
-    @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visit(this);
-    }
+  @Override
+  public void accept(ASTVisitor visitor) {
+    visitor.visit(this);
+  }
 }

@@ -8,15 +8,14 @@ import parser.states.ProgramParserState;
 
 public class Parser implements ParserState {
 
-    private ParserState state;
+  private ParserState state;
 
-    public Parser() {
-        this.state = new ProgramParserState();
-    }
+  public Parser() {
+    this.state = new ProgramParserState();
+  }
 
-    @Override
-    public ASTNode parse(Provider<VisitableToken> input) {
-        return this.state.parse(input);
-    }
-
+  @Override
+  public ASTNode parse(Provider<VisitableToken> input) {
+    return this.state.parse(input);
+  }
 }
