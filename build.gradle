@@ -29,7 +29,9 @@ staticAnalysis {
     checkstyle {}
 }
 
-
+tasks.named("check") {
+    dependsOn(tasks.evaluateViolations)
+}
 tasks.build.dependsOn(tasks.evaluateViolations)
 tasks.build.dependsOn(tasks.googleJavaFormat)
 verifyGoogleJavaFormat.mustRunAfter(tasks.googleJavaFormat)
