@@ -1,0 +1,6 @@
+build/
+./cli/build/
+./common/build/
+./interpreter/build/
+./lexer/build/
+./parser/build/
