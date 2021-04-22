@@ -4,19 +4,19 @@ import parser.ASTVisitor;
 
 public class StringNode extends ExpressionNode {
 
-    private String value;
+  private String value;
 
-    public StringNode(String value) {
-        super();
-        this.value = value;
-    }
+  public StringNode(String value) {
+    super();
+    this.value = value;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visit(this);
-    }
+  @Override
+  public void accept(ASTVisitor visitor) {
+    visitor.visit(this);
+  }
 }

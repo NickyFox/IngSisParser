@@ -4,19 +4,19 @@ import java.util.StringJoiner;
 
 public class Terminal implements Console {
 
-    @Override
-    public void log(Object ...string) {
-        StringJoiner joiner = new StringJoiner(" ");
+  @Override
+  public void log(Object... string) {
+    StringJoiner joiner = new StringJoiner(" ");
 
-        for (Object o : string) {
-            joiner.add(String.valueOf(o));
-        }
-
-        System.out.println(joiner.toString());
+    for (Object o : string) {
+      joiner.add(String.valueOf(o));
     }
 
-    @Override
-    public void error(Exception e) {
-        System.out.println(e.getMessage());
-    }
+    System.out.println(joiner.toString());
+  }
+
+  @Override
+  public void error(Exception e) {
+    System.out.println(e.getMessage());
+  }
 }

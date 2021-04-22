@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'com.novoda.static-analysis'
 }
 
 group 'Printscript'
@@ -23,10 +24,10 @@ jacocoTestCoverageVerification {
             limit {
                 counter = 'LINE'
                 value = 'COVEREDRATIO'
-              //  minimum = 0.8
+                minimum = 0.8
             }
         }
     }
 }
 
-tasks.build.dependsOn(jacocoTestCoverageVerification)
+//tasks.build.dependsOn(jacocoTestCoverageVerification)
