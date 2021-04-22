@@ -1,8 +1,5 @@
 import interpreter.*;
 import org.junit.Test;
-import parser.nodes.ASTNode;
-import parser.nodes.AdditionNode;
-import parser.nodes.ExpressionNode;
 
 public class InterpreterTest {
 
@@ -11,7 +8,5 @@ public class InterpreterTest {
   Interpreter interpreter = new Interpreter(console, memory);
 
   @Test
-  public void interpreterTest() {
-
-  }
+  public void interpreterTest() {}
 }
