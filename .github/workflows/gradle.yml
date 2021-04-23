@@ -23,6 +23,7 @@ jobs:
         with:
           # Arguments for the Google Java Format executable
           args: --replace
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
