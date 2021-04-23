@@ -6,7 +6,7 @@ plugins {
     id 'maven-publish'
 }
 group 'Printscript'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 test {
     finalizedBy jacocoTestReport
@@ -47,8 +47,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
