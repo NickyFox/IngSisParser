@@ -13,7 +13,6 @@ public IllegalGrammarException() {
 
 
 
-
                         super
                                 (
                                         "Invalid grammar"
