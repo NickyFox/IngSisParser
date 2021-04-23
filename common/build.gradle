@@ -4,9 +4,8 @@ plugins {
     id 'com.novoda.static-analysis'
 }
 
+group 'Printscript'
 version '1.0.0'
-
-
 
 repositories {
     mavenCentral()
@@ -24,6 +23,26 @@ jacocoTestCoverageVerification {
                 value = 'COVEREDRATIO'
                 minimum = 0.8
             }
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
+            credentials {
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
