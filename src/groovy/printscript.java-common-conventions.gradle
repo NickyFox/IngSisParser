@@ -8,8 +8,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
             credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
+                username = NickyFox
+                password = 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
             }
         }
     }
