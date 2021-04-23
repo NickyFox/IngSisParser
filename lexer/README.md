@@ -5,6 +5,12 @@ We decided to use the **MAINLINE INTEGRATION PATTERN**.
 It's based on one single main thread, from which all new functionalities, bug 
 fixes or anything should be based on.
 
+All new branches must have a name based on this format: 
+ 
+ - `feature-{single-word-description}`
+ - `bug-{single-word-description}`
+ - `fix-{single-word-description}`
+ 
 This main branch will be the production branch. Every push to it will end in a published change.
 We've chosen this pattern to simplify integration, as the functionality is certainly limited, it
 should not have many changes beside any particular bug fix.
