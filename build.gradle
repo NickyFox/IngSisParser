@@ -8,20 +8,6 @@ plugins {
 group 'Printscript'
 version '1.0-SNAPSHOT'
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
-
 test {
     finalizedBy jacocoTestReport
 }
