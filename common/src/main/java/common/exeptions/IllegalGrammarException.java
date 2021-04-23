@@ -5,8 +5,13 @@ public class IllegalGrammarException extends RuntimeException {
     super(errorMessage);
   }
 
-  public IllegalGrammarException() {
+  public
+  IllegalGrammarException()
+  {
 
-    super("Invalid grammar");
+    super
+            (
+                    "Invalid grammar")
+    ;
   }
 }
