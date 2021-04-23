@@ -5,8 +5,7 @@ plugins {
 }
 
 version '1.0.0'
-
-
+group 'Printscript'
 
  repositories {
     mavenCentral()

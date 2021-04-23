@@ -4,9 +4,8 @@ plugins {
     id 'com.novoda.static-analysis'
 }
 
+group 'Printscript'
 version '1.0.0'
-
-
 
 repositories {
     mavenCentral()
