@@ -39,5 +39,5 @@ jobs:
         uses: axel-op/googlejavaformat-action@v3.4.0
         with:
           # Arguments for the Google Java Format executable
-          args: --replace
-            --skip-sorting-imports
+          args: --skip-sorting-imports
+            
