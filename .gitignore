@@ -11,6 +11,11 @@
 /*/internal-android-performance-testing/build-android-libs
 test-splits/
 
+properties.gradle
+./properties.gradle
+/properties.gradle
+!/properties.gradle
+
 # IDEA
 # ----
 !/.idea
