@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'com.novoda.static-analysis'
-    id 'maven-publish'
 }
 
 group 'Printscript'
@@ -30,18 +29,5 @@ jacocoTestCoverageVerification {
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
 
 //tasks.build.dependsOn(jacocoTestCoverageVerification)

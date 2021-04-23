@@ -1,4 +1,4 @@
-lexer.tokens.LetToken@36aade63
+lexer.tokens.LetToken@7e4deaaf
 let
 str
 :
@@ -7,4 +7,4 @@
 "some string"
 ;
 null
-¯[lexer.tokens.LetToken@57518f6e, lexer.tokens.IdentifierToken@2b13222, lexer.tokens.TypeAssignationToken@43a1eaa9, lexer.tokens.StringTypeToken@76e0e93, lexer.tokens.AssignationToken@5c9fdbef, lexer.tokens.StringValueToken@5734c27c, lexer.tokens.SemicolonToken@1b8c9e91, lexer.tokens.EOFToken@6ce111e5]
+±[lexer.tokens.LetToken@64a202c1, lexer.tokens.IdentifierToken@472cc413, lexer.tokens.TypeAssignationToken@20fac463, lexer.tokens.StringTypeToken@12bd7dba, lexer.tokens.AssignationToken@66fdd126, lexer.tokens.StringValueToken@47d08db6, lexer.tokens.SemicolonToken@317f80f3, lexer.tokens.EOFToken@48567bcb]
