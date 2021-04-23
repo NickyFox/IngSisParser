@@ -2,3 +2,8 @@ plugins {
     id 'java'
     id 'printscript.java-common-conventions'
 }
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
