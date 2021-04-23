@@ -23,8 +23,6 @@ jobs:
         with:
           # Arguments for the Google Java Format executable
           args: --replace
-            --skip-sorting-imports
-          # Set to true to not commit the changes
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
