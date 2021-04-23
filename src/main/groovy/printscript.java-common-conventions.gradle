@@ -15,7 +15,7 @@ publishing {
     }
     publications {
         mavenJava(MavenPublication) {
-            artifact stompProgressLibraryFile
+            from(components.java)
         }
     }
 }
