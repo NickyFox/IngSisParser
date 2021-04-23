@@ -1,3 +1,7 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '6.8.3'
+}
+
 publishing {
     repositories {
         maven {
