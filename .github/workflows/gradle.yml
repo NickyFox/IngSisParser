@@ -22,7 +22,7 @@ jobs:
         uses: axel-op/googlejavaformat-action@v3.4.0
         with:
           # Arguments for the Google Java Format executable
-          args: --replace
+          args: "--skip-sorting-imports --replace"
           githubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
