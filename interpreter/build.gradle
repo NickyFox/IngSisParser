@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'com.novoda.static-analysis'
+    id 'maven-publish'
 }
 
 group 'Printscript'

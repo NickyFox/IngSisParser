@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'my-library.java-common-conventions'
+    id 'maven-publish'
 }
 
 repositories {

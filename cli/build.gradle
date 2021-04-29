@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'com.novoda.static-analysis'
+    id 'maven-publish'
+
 }
 
 version '1.0.0'

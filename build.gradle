@@ -41,6 +41,11 @@ tasks.build.dependsOn(tasks.evaluateViolations)
 tasks.build.dependsOn(tasks.googleJavaFormat)
 verifyGoogleJavaFormat.mustRunAfter(tasks.googleJavaFormat)
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
 
 //jacocoTestCoverageVerification {
 //    violationRules {
