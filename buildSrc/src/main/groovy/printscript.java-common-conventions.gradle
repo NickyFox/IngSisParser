@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
-    id 'maven-publish'
+    id("maven-publish")
     id 'com.github.sherter.google-java-format'
     id 'com.novoda.static-analysis'
 }
