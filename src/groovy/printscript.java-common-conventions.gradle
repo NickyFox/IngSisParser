@@ -2,20 +2,26 @@ task wrapper(type: Wrapper) {
     gradleVersion = '6.8.3'
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.13'
+    compile project(":common")
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.8
             }
         }
     }
-    publications {
-        mavenJava(MavenPublication) {
-            from(components.java)
-        }
-    }
 }
+
+//tasks.build.dependsOn(jacocoTestCoverageVerification)

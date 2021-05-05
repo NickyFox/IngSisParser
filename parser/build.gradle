@@ -1,12 +1,9 @@
 plugins {
-    id 'java'
-    id 'jacoco'
-    id 'com.novoda.static-analysis'
+    id 'printscript.java-common-conventions'
 }
 
 group 'Printscript'
 version '1.0.0'
-
 
 
 repositories {
@@ -18,18 +15,3 @@ dependencies {
     compile project(':lexer')
     compile project(':common')
 }
-
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                counter = 'LINE'
-                value = 'COVEREDRATIO'
-                minimum = 0.8
-            }
-        }
-    }
-}
-
-
-//tasks.build.dependsOn(jacocoTestCoverageVerification)

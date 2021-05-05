@@ -1,0 +1,86 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'com.github.sherter.google-java-format'
+    id 'com.novoda.static-analysis'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.13'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.5
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '6.8.3'
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+tasks.named("check") {
+    dependsOn(tasks.evaluateViolations)
+}
+
+staticAnalysis {
+    penalty {
+        maxErrors = 0
+        maxWarnings = 0
+    }
+//    checkstyle {}
+}
+
+tasks.named("check") {
+    dependsOn(tasks.evaluateViolations)
+}
+tasks.build.dependsOn(tasks.evaluateViolations)
+tasks.build.dependsOn(tasks.googleJavaFormat)
+verifyGoogleJavaFormat.mustRunAfter(tasks.googleJavaFormat)
+
+tasks.build.dependsOn(jacocoTestCoverageVerification)
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
+            credentials {
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
