@@ -1,9 +1,5 @@
 plugins {
-    id 'java'
-    id 'jacoco'
-    id 'com.novoda.static-analysis'
-    id 'maven-publish'
-
+    id 'printscript.java-common-conventions'
 }
 
 version '1.0.0'
@@ -20,17 +16,3 @@ dependencies {
     compile project(':interpreter')
     compile project(':common')
 }
-
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                counter = 'LINE'
-                value = 'COVEREDRATIO'
-                minimum = 0.5
-            }
-        }
-    }
-}
-
-//tasks.build.dependsOn(jacocoTestCoverageVerification)
