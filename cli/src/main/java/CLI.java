@@ -13,10 +13,8 @@ import parser.nodes.ASTNode;
 public class CLI {
   public static void main(String[] args) {
     DefaultLexer lexer = new DefaultLexer();
-          Parser parser =
-                  new Parser();
-    Interpreter interpreter =
-                      new Interpreter(new Terminal());
+    Parser parser = new Parser();
+    Interpreter interpreter = new Interpreter(new Terminal());
     FileReader fileReader = new DefaultFileReader();
     List<Token> tokenStream = lexer.lex(fileReader.readFile(args[0]));
     Provider input = new TokenProvider(tokenStream);
