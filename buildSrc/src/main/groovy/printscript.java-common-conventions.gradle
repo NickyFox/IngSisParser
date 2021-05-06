@@ -72,8 +72,8 @@ publishing {
             url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
             credentials {
                 credentials {
-                    username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
-                    password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                    username = "nickyfox"
+                    password = "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"
                 }
             }
         }
