@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'Printscript'
-version 'version '1.0.3''
+version  '1.0.3'
 
 
 repositories {
