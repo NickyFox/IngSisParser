@@ -1,0 +1,102 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id("maven-publish")
+    id 'com.github.sherter.google-java-format'
+    id 'com.novoda.static-analysis'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.13'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.5
+            }
+        }
+    }
+}
+
+staticAnalysis {
+    penalty {
+        maxErrors = 0
+        maxWarnings = 0
+    }
+//    checkstyle {}
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/NickyFox/IngSisParser")
+            credentials {
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '6.8.3'
+}
+
+task installGitHooks(type: Copy) {
+    from file("$rootDir/config/hooks")
+    into file("$rootDir/.git/hooks")
+    fileMode 0777
+}
+
+task format {
+    dependsOn tasks.googleJavaFormat
+}
+
+task compileAndFormat {
+    dependsOn compileJava, compileTestJava, format
+}
+
+task verifyAndTest {
+    dependsOn test, tasks.verifyGoogleJavaFormat
+}
+
+tasks.named("check") {
+    dependsOn(tasks.evaluateViolations)
+}
+
+tasks.build.dependsOn(tasks.evaluateViolations)
+tasks.build.dependsOn(tasks.googleJavaFormat)
+tasks.build.dependsOn(jacocoTestCoverageVerification)
+build.dependsOn installGitHooks
+verifyGoogleJavaFormat.mustRunAfter(tasks.googleJavaFormat)
