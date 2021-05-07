@@ -16,9 +16,9 @@ public class CLI {
     Parser parser = new Parser();
     Interpreter
             interpreter = new Interpreter(new Terminal());
-    FileReader
-            fileReader = new DefaultFileReader();
-    List<Token> tokenStream = lexer.lex(fileReader.readFile(args[0]));
+    FileReader fileReader = new DefaultFileReader();
+    List<Token>
+            tokenStream = lexer.lex(fileReader.readFile(args[0]));
     Provider input = new TokenProvider(tokenStream);
     ASTNode ast = parser.parse(input);
     interpreter.start(ast);
