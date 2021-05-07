@@ -32,22 +32,6 @@ jacocoTestCoverageVerification {
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '6.8.3'
-}
-
-jacocoTestReport {
-    dependsOn test
-}
-
-test {
-    finalizedBy jacocoTestReport
-}
-
-tasks.named("check") {
-    dependsOn(tasks.evaluateViolations)
-}
-
 staticAnalysis {
     penalty {
         maxErrors = 0
@@ -55,15 +39,6 @@ staticAnalysis {
     }
 //    checkstyle {}
 }
-
-tasks.named("check") {
-    dependsOn(tasks.evaluateViolations)
-}
-tasks.build.dependsOn(tasks.evaluateViolations)
-tasks.build.dependsOn(tasks.googleJavaFormat)
-verifyGoogleJavaFormat.mustRunAfter(tasks.googleJavaFormat)
-
-tasks.build.dependsOn(jacocoTestCoverageVerification)
 
 publishing {
     repositories {
@@ -84,3 +59,44 @@ publishing {
         }
     }
 }
+
+jacocoTestReport {
+    dependsOn test
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '6.8.3'
+}
+
+task installGitHooks(type: Copy) {
+    from file("$rootDir/config/hooks")
+    into file("$rootDir/.git/hooks")
+    fileMode 0777
+}
+
+task format {
+    dependsOn tasks.googleJavaFormat
+}
+
+task compileAndFormat {
+    dependsOn compileJava, compileTestJava, format
+}
+
+task verifyAndTest {
+    dependsOn test, tasks.verifyGoogleJavaFormat
+}
+
+tasks.named("check") {
+    dependsOn(tasks.evaluateViolations)
+}
+
+tasks.build.dependsOn(tasks.evaluateViolations)
+tasks.build.dependsOn(tasks.googleJavaFormat)
+tasks.build.dependsOn(jacocoTestCoverageVerification)
+build.dependsOn installGitHooks
+verifyGoogleJavaFormat.mustRunAfter(tasks.googleJavaFormat)
