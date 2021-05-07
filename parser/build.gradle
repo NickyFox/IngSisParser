@@ -2,8 +2,8 @@ plugins {
     id 'printscript.java-common-conventions'
 }
 
-group 'Printscript'
-version  '1.0.3'
+group 'printscript'
+version  '1.0.4'
 
 
 repositories {
