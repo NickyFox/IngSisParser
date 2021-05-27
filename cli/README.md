@@ -1,4 +1,4 @@
-#CLI Module
+# CLI Module
 
 ## Contributing - Branching
 We decided to use the **MAINLINE INTEGRATION PATTERN**. 

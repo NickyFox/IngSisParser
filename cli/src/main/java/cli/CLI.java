@@ -1,3 +1,4 @@
+package cli;
 import common.FileReader.DefaultFileReader;
 import common.FileReader.FileReader;
 import common.provider.Provider;
@@ -13,16 +14,12 @@ import parser.nodes.ASTNode;
 public class CLI {
   public static void main(String[] args) {
     DefaultLexer lexer = new DefaultLexer();
-    Parser
-            parser = new Parser();
+    Parser parser = new Parser();
     Interpreter interpreter = new Interpreter(new Terminal());
-                      FileReader fileReader = new DefaultFileReader();
-    List<Token>
-            tokenStream = lexer.lex(fileReader.readFile(args[0]));
-    Provider input =
-            new TokenProvider(tokenStream);
-    ASTNode ast =
-                                    parser.parse(input);
+    FileReader fileReader = new DefaultFileReader();
+    List<Token> tokenStream = lexer.lex(fileReader.readFile(args[0]));
+    Provider input = new TokenProvider(tokenStream);
+    ASTNode ast = parser.parse(input);
     interpreter.start(ast);
   }
 }
