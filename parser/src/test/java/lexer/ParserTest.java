@@ -1,37 +1,75 @@
 package lexer;
 
+import common.provider.Provider;
 import java.util.List;
 import lexer.provider.TokenProvider;
 import lexer.tokens.Token;
+import org.junit.Assert;
+import org.junit.Test;
 import parser.Parser;
+import parser.nodes.*;
 
 public class ParserTest {
 
   Lexer lexer = new DefaultLexer();
   Parser parser = new Parser();
-  String declaration = "let str: string = \"some string\";";
-  List<Token> tokens = lexer.lex(declaration);
-  TokenProvider prov = new TokenProvider(tokens);
 
-  //      @Test
-  //      public void parse() {
-  //        Provider<VisitableToken> token = new Provider<VisitableToken>() {
-  //          @Override
-  //          public void next() {
-  //
-  //          }
-  //
-  //          @Override
-  //          public VisitableToken get() {
-  //            return null;
-  //          }
-  //
-  //          @Override
-  //          public boolean hasNext() {
-  //            return false;
-  //          }
-  //        }
-  //          ASTNode node = parser.parse(prov);
-  //          Assert.assertEquals(tokens.size(), 8);
-  //      }
+  @Test
+  public void shouldParseExpectedASTFromStringDeclaration() {
+
+    // Given input
+    String declaration = "let str: string = \"some string\";";
+    List<Token> tokens = lexer.lex(declaration);
+    Provider input = new TokenProvider(tokens);
+    ASTNode node = parser.parse(input);
+
+    // Generating expected result for input
+    ExpressionNode exprNode = new StringNode("\"some string\"");
+    exprNode.setLeft(new StringNode("\"some string\""));
+    ProgramNode expected = new ProgramNode();
+    expected.add(new DeclarationNode(new IdentifierNode("str"), "string", exprNode));
+
+    Assert.assertEquals(node, expected);
+  }
+
+  @Test
+  public void shouldParseExpectedASTFromBooleanDeclaration() {
+    // Given input
+    String declaration = "let bo: boolean = true;";
+    List<Token> tokens = lexer.lex(declaration);
+    Provider input = new TokenProvider(tokens);
+    ASTNode node = parser.parse(input);
+
+    ExpressionNode exprNode = new BooleanNode(true);
+    exprNode.setLeft(new BooleanNode(true));
+
+    // Generating expected result for input
+    ProgramNode expected = new ProgramNode();
+    expected.add(new DeclarationNode(new IdentifierNode("bo"), "boolean", exprNode));
+
+    Assert.assertEquals(node, expected);
+  }
+
+  @Test
+  public void shouldParseExpectedASTFromCombinedDeclaration() {
+
+    // Given input
+    String declaration = "let str: string = \"some string\";\nlet bo: boolean = true;";
+    List<Token> tokens = lexer.lex(declaration);
+    Provider input = new TokenProvider(tokens);
+    ASTNode node = parser.parse(input);
+
+    // Generating expected result for input
+    ProgramNode expected = new ProgramNode();
+    ExpressionNode strExprNode = new StringNode("\"some string\"");
+    strExprNode.setLeft(new StringNode("\"some string\""));
+
+    expected.add(new DeclarationNode(new IdentifierNode("str"), "string", strExprNode));
+    ExpressionNode exprNode = new BooleanNode(true);
+    exprNode.setLeft(new BooleanNode(true));
+
+    expected.add(new DeclarationNode(new IdentifierNode("bo"), "boolean", exprNode));
+
+    Assert.assertEquals(node, expected);
+  }
 }

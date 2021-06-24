@@ -1,5 +1,6 @@
 package parser.nodes;
 
+import java.util.Objects;
 import parser.ASTVisitor;
 
 public class DeclarationNode implements ASTNode {
@@ -30,5 +31,22 @@ public class DeclarationNode implements ASTNode {
   @Override
   public void accept(ASTVisitor visitor) {
     visitor.visit(this);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    DeclarationNode that = (DeclarationNode) o;
+
+    boolean first = Objects.equals(identifierNode, that.identifierNode);
+    boolean second = Objects.equals(type, that.type);
+    boolean third = expressionNode.equals(that.expressionNode);
+    return first && second && third;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(identifierNode, type, expressionNode);
   }
 }
