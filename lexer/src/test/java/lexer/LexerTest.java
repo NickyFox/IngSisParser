@@ -15,13 +15,13 @@ import org.junit.Test;
 
 public class LexerTest {
 
-  Lexer lexer = new DefaultLexer();
+  Lexer lexer = new DefaultLexer("1.0");
   String declaration = "let str: string = \"some string\";";
   List<Token> tokens = lexer.lex(declaration);
 
   @Test
   public void createLexer() {
-    Lexer lexer = new DefaultLexer();
+    Lexer lexer = new DefaultLexer("1.0");
     assertNotNull(lexer);
   }
 

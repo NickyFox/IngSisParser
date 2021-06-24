@@ -11,7 +11,7 @@ import parser.nodes.*;
 
 public class ParserTest {
 
-  Lexer lexer = new DefaultLexer();
+  Lexer lexer = new DefaultLexer("1.0");
   Parser parser = new Parser();
 
   @Test
