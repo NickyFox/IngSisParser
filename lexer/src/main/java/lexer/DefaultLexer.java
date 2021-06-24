@@ -10,8 +10,8 @@ import lexer.tokens.Token;
 public class DefaultLexer implements Lexer {
   TokenParser tokenParser;
 
-  public DefaultLexer() {
-    tokenParser = TokenParserFactory.buildTokens();
+  public DefaultLexer(String v) {
+    tokenParser = TokenParserFactory.buildTokens(v);
   }
 
   public List<Token> lex(String str) {

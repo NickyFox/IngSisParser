@@ -8,8 +8,8 @@ import lexer.tokenizer.Tokenizer;
 
 public class TokenParserFactory {
 
-  public static TokenParser buildTokens() {
-    return buildTokensHelper(Tokenizer.getTokens(), new BaseTokenParser());
+  public static TokenParser buildTokens(String v) {
+    return buildTokensHelper(Tokenizer.getTokens(v), new BaseTokenParser());
   }
 
   private static TokenParser buildTokensHelper(

@@ -39,6 +39,13 @@ public class ProgramParserState extends AbstractParserState {
   }
 
   @Override
+  public void visit(ConstToken token) {
+    getTokenProvider().next();
+    programNode.add(new DeclarationParserState().parse(getTokenProvider()));
+    getTokenProvider().get().accept(this);
+  }
+
+  @Override
   public void visit(PrintToken token) {
     getTokenProvider().next();
     programNode.add(new PrintParserState().parse(getTokenProvider()));

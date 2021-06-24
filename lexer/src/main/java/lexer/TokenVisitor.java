@@ -50,4 +50,6 @@ public interface TokenVisitor {
   void visit(OpenBracketToken token);
 
   void visit(ClosingBracketToken token);
+
+  void visit(ConstToken constToken);
 }

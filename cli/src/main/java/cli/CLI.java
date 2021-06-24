@@ -13,8 +13,8 @@ import parser.*;
 import parser.nodes.ASTNode;
 
 public class CLI {
-  public static void main(String[] args) {
-    DefaultLexer lexer = new DefaultLexer();
+  public static void main(String[] args, String version) {
+    DefaultLexer lexer = new DefaultLexer(version);
     Parser parser = new Parser();
     Interpreter interpreter = new Interpreter(new Terminal());
     FileReader fileReader = new DefaultFileReader();
