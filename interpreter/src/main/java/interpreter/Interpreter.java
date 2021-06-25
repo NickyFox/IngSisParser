@@ -174,8 +174,9 @@ public class Interpreter implements ASTVisitor {
         if (Double.toString(self) != null) {
           double ceil = Math.ceil(self);
           if (self == ceil) {
-            emitter.add(Double.toString((int) ceil));
-            console.log((int) ceil);
+            Integer integer = (int) ceil;
+            emitter.add(integer.toString());
+            console.log(integer);
           } else {
             emitter.add(value.getValue().toString());
             console.log(value.getValue());
