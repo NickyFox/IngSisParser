@@ -40,6 +40,7 @@ public class Interpreter implements ASTVisitor {
   public void visit(DeclarationNode declarationNode) {
     String id = declarationNode.getIdentifierNode().getIdentifier();
     String type = declarationNode.getType();
+    boolean isFinal = declarationNode.isFinal();
 
     checkDeclaration(id);
 
@@ -47,12 +48,13 @@ public class Interpreter implements ASTVisitor {
     Value result = stack.pop();
 
     checkTypeOfValueWithId(result, type, id);
-    memory.save(id, result);
+    memory.save(id, result, isFinal);
   }
 
   @Override
   public void visit(AssigmentNode assigmentNode) {
     String id = assigmentNode.getIdentifierNode().getIdentifier();
+    boolean isFinal = memory.isFinal(id);
     checkAssignation(id);
 
     String type = memory.read(id).getType();
@@ -61,7 +63,7 @@ public class Interpreter implements ASTVisitor {
     Value result = stack.pop();
 
     checkTypeOfValueWithId(result, type, id);
-    memory.save(id, result);
+    memory.save(id, result, isFinal);
   }
 
   @Override
@@ -158,6 +160,9 @@ public class Interpreter implements ASTVisitor {
   private void checkAssignation(String id) {
     if (!memory.has(id)) {
       throw new IllegalGrammarException(String.format("variable %s is not defined", id));
+    }
+    if (memory.isFinal(id)) {
+      throw new IllegalGrammarException(String.format("const %s is already defined", id));
     }
   }
 

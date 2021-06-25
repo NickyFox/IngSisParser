@@ -36,7 +36,7 @@ public class OpenBracketParserState extends AbstractParserState {
   @Override
   public void visit(LetToken token) {
     getTokenProvider().next();
-    programNode.add(new DeclarationParserState().parse(getTokenProvider()));
+    programNode.add(new DeclarationParserState(false).parse(getTokenProvider()));
     getTokenProvider().get().accept(this);
   }
 

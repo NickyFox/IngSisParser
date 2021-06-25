@@ -9,6 +9,11 @@ import parser.nodes.IdentifierNode;
 public class DeclarationParserState extends AbstractParserState {
 
   private DeclarationNode declarationNode;
+  private boolean isFinal;
+
+  public DeclarationParserState(boolean isFinal) {
+    this.isFinal = isFinal;
+  }
 
   @Override
   public ASTNode getNode() {
@@ -22,6 +27,6 @@ public class DeclarationParserState extends AbstractParserState {
     ExpressionNode type = (ExpressionNode) state.parse(getTokenProvider());
 
     this.declarationNode =
-        new DeclarationNode(new IdentifierNode(token.getValue()), state.getType(), type);
+        new DeclarationNode(new IdentifierNode(token.getValue()), state.getType(), type, isFinal);
   }
 }
