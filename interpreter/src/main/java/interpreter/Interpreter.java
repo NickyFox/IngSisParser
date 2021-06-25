@@ -7,7 +7,6 @@ import interpreter.value.StringValue;
 import interpreter.value.Value;
 import java.util.Stack;
 import java.util.function.Consumer;
-
 import parser.ASTVisitor;
 import parser.nodes.*;
 
@@ -29,7 +28,6 @@ public class Interpreter implements ASTVisitor {
     this.memory = new LocalStorage();
     this.console = console;
     this.emitter = emitter;
-
   }
 
   public Interpreter(Console console) {

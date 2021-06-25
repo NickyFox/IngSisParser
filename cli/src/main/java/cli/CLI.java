@@ -7,7 +7,6 @@ import interpreter.Interpreter;
 import interpreter.Terminal;
 import java.util.List;
 import java.util.function.Consumer;
-
 import lexer.DefaultLexer;
 import lexer.provider.TokenProvider;
 import lexer.tokens.Token;
