@@ -43,12 +43,16 @@ public class Interpreter implements ASTVisitor {
     boolean isFinal = declarationNode.isFinal();
 
     checkDeclaration(id);
+    ExpressionNode expressionNode = declarationNode.getExpressionNode();
+    if (expressionNode != null ) expressionNode.accept(this);
+    Value result = null;
+    if (!stack.empty()) {
+      result = stack.pop();
+      checkTypeOfValueWithId(result, type, id);
+    }
 
-    declarationNode.getExpressionNode().accept(this);
-    Value result = stack.pop();
-
-    checkTypeOfValueWithId(result, type, id);
     memory.save(id, result, isFinal);
+
   }
 
   @Override
@@ -56,13 +60,15 @@ public class Interpreter implements ASTVisitor {
     String id = assigmentNode.getIdentifierNode().getIdentifier();
     boolean isFinal = memory.isFinal(id);
     checkAssignation(id);
-
-    String type = memory.read(id).getType();
+    Value value = memory.read(id);
+    String type = null;
+    if (value != null)  type = memory.read(id).getType();
 
     assigmentNode.getExpressionNode().accept(this);
     Value result = stack.pop();
-
-    checkTypeOfValueWithId(result, type, id);
+    if (type != null) {
+      checkTypeOfValueWithId(result, type, id);
+    }
     memory.save(id, result, isFinal);
   }
 

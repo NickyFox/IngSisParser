@@ -1,10 +1,7 @@
 package parser.states;
 
 import common.exeptions.IllegalGrammarException;
-import lexer.tokens.BooleanTypeToken;
-import lexer.tokens.NumberTypeToken;
-import lexer.tokens.StringTypeToken;
-import lexer.tokens.TypeAssignationToken;
+import lexer.tokens.*;
 import parser.nodes.ASTNode;
 import parser.nodes.ExpressionNode;
 
@@ -44,6 +41,8 @@ public class TypeAssignationParserState extends AbstractParserState {
   public void visit(BooleanTypeToken token) {
     this.parseType("boolean");
   }
+
+
 
   public void parseType(String type) {
     if (!hasTypeAssignation) {

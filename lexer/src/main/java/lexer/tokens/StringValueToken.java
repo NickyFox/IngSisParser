@@ -15,7 +15,7 @@ public class StringValueToken extends Token {
 
   @Override
   public Token withValue(String value) {
-    return new StringValueToken(value);
+    return new StringValueToken(value.replaceAll("\"", ""));
   }
 
   @Override

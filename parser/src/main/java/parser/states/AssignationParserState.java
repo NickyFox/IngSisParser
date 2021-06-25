@@ -1,6 +1,8 @@
 package parser.states;
 
 import lexer.tokens.AssignationToken;
+import lexer.tokens.EOFToken;
+import lexer.tokens.SemicolonToken;
 import parser.nodes.ASTNode;
 import parser.nodes.ExpressionNode;
 
@@ -18,4 +20,7 @@ public class AssignationParserState extends AbstractParserState {
     getTokenProvider().next();
     this.expressionNode = (ExpressionNode) new ExpressionParserState().parse(getTokenProvider());
   }
+
+  @Override
+  public void visit(SemicolonToken token) {}
 }

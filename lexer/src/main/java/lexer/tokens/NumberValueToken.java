@@ -6,11 +6,11 @@ import lexer.TokenVisitor;
 public class NumberValueToken extends Token {
 
   public NumberValueToken() {
-    super(Pattern.compile("[0-9]+", Pattern.MULTILINE));
+    super(Pattern.compile("[0-9]*\\.?[0-9]*", Pattern.MULTILINE));
   }
 
   public NumberValueToken(String value) {
-    super(Pattern.compile("[0-9]+", Pattern.MULTILINE), value);
+    super(Pattern.compile("[0-9]*\\.?[0-9]*", Pattern.MULTILINE), value);
   }
 
   @Override

@@ -5,7 +5,6 @@ import interpreter.value.BooleanValue;
 import interpreter.value.NumberValue;
 import interpreter.value.StringValue;
 import interpreter.value.Value;
-import java.awt.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -292,11 +291,11 @@ public class InterpreterTerminalAndLocalStorageTestTest {
     NumberValue numberValue0 = new NumberValue(1);
     String type = numberValue0.getType();
     boolean isNumber = numberValue0.is("number");
-    int numberValue = numberValue0.getValue();
+    Float numberValue = numberValue0.getValue();
 
     Assert.assertEquals("number", type);
     Assert.assertTrue(isNumber);
-    Assert.assertEquals(1, numberValue);
+    Assert.assertEquals(1, numberValue, 0);
   }
 
   @Test(expected = ArithmeticException.class)

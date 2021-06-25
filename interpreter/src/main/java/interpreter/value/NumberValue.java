@@ -3,9 +3,9 @@ package interpreter.value;
 public class NumberValue implements Value {
 
   private final String TYPE = "number";
-  private Integer v;
+  private Float v;
 
-  public NumberValue(Integer value) {
+  public NumberValue(float value) {
     this.v = value;
   }
 
@@ -21,7 +21,7 @@ public class NumberValue implements Value {
 
   @Override
   public Value minus(NumberValue value) {
-    return new NumberValue(value.getValue() - v);
+    return new NumberValue(v - value.getValue());
   }
 
   @Override
@@ -35,7 +35,7 @@ public class NumberValue implements Value {
       throw new ArithmeticException("Can not divide by zero");
     }
 
-    return new NumberValue(value.getValue() / v);
+    return new NumberValue(v / value.getValue());
   }
 
   @Override
@@ -68,7 +68,7 @@ public class NumberValue implements Value {
     return value.or(this);
   }
 
-  public Integer getValue() {
+  public Float getValue() {
     return this.v;
   }
 
