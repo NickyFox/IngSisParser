@@ -111,6 +111,24 @@ public interface Value {
   }
   ;
 
+  default Value greaterThan(StringValue value) {
+    throw new IllegalGrammarException(
+            "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
+  default Value greaterThan(NumberValue value) {
+    throw new IllegalGrammarException(
+            "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
+  default Value greaterThan(BooleanValue value) {
+    throw new IllegalGrammarException(
+            "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
   Value divide(Value value);
 
   Value times(Value value);
@@ -123,9 +141,13 @@ public interface Value {
 
   Value or(Value value);
 
+  Value greaterThan(Value value);
+
   Object getValue();
 
   String getType();
 
   boolean is(String type);
+
+
 }

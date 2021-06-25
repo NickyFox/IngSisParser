@@ -48,6 +48,11 @@ public class BooleanValue implements Value {
     return value.or(this);
   }
 
+  @Override
+  public Value greaterThan(Value value) {
+    return value.greaterThan(this);
+  }
+
   public Boolean getValue() {
     return this.v;
   }

@@ -3,9 +3,9 @@ package interpreter.value;
 public class NumberValue implements Value {
 
   private final String TYPE = "number";
-  private Float v;
+  private Double v;
 
-  public NumberValue(float value) {
+  public NumberValue(double value) {
     this.v = value;
   }
 
@@ -28,6 +28,12 @@ public class NumberValue implements Value {
   public Value times(NumberValue value) {
     return new NumberValue(value.getValue() * v);
   }
+
+  @Override
+  public Value greaterThan(NumberValue value) {
+    return new BooleanValue(value.getValue() > v);
+  }
+
 
   @Override
   public Value divide(NumberValue value) {
@@ -68,7 +74,12 @@ public class NumberValue implements Value {
     return value.or(this);
   }
 
-  public Float getValue() {
+  @Override
+  public Value greaterThan(Value value) {
+    return value.greaterThan(this);
+  }
+
+  public Double getValue() {
     return this.v;
   }
 

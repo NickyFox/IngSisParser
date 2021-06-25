@@ -4,14 +4,14 @@ import parser.ASTVisitor;
 
 public class IntegerNode extends ExpressionNode {
 
-  private Float value;
+  private double value;
 
-  public IntegerNode(Float value) {
+  public IntegerNode(double value) {
     super();
     this.value = value;
   }
 
-  public Float getValue() {
+  public Double getValue() {
     return value;
   }
 

@@ -50,6 +50,11 @@ public class StringValue implements Value {
   }
 
   @Override
+  public Value greaterThan(Value value) {
+    return value.greaterThan(this);
+  }
+
+  @Override
   public String getValue() {
     return this.v;
   }

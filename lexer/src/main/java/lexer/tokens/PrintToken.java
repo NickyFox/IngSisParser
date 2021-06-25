@@ -6,11 +6,11 @@ import lexer.TokenVisitor;
 public class PrintToken extends Token {
 
   public PrintToken() {
-    super(Pattern.compile("print", Pattern.MULTILINE));
+    super(Pattern.compile("println", Pattern.MULTILINE));
   }
 
   public PrintToken(String value) {
-    super(Pattern.compile("print", Pattern.MULTILINE), value);
+    super(Pattern.compile("println", Pattern.MULTILINE), value);
   }
 
   @Override

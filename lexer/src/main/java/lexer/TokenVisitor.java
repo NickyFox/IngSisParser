@@ -52,4 +52,6 @@ public interface TokenVisitor {
   void visit(ClosingBracketToken token);
 
   void visit(ConstToken constToken);
+
+  void visit(MayorComparisonToken comparisonToken);
 }

@@ -274,24 +274,24 @@ public class InterpreterTerminalAndLocalStorageTestTest {
 
     NumberValue numberValue2 = new NumberValue(1);
     Value result2 = numberValue2.plus(new NumberValue(1));
-    Assert.assertEquals(2F, result2.getValue());
+    Assert.assertEquals(2, result2.getValue());
 
     NumberValue numberValue3 = new NumberValue(1);
     Value result3 = numberValue3.minus(new NumberValue(1));
-    Assert.assertEquals(0F, result3.getValue());
+    Assert.assertEquals(0, result3.getValue());
 
     NumberValue numberValue4 = new NumberValue(1);
     Value result4 = numberValue4.times(new NumberValue(1));
-    Assert.assertEquals(1F, result4.getValue());
+    Assert.assertEquals(1, result4.getValue());
 
     NumberValue numberValue5 = new NumberValue(1);
     Value result5 = numberValue5.divide(new NumberValue(1));
-    Assert.assertEquals(1F, result5.getValue());
+    Assert.assertEquals(1, result5.getValue());
 
     NumberValue numberValue0 = new NumberValue(1);
     String type = numberValue0.getType();
     boolean isNumber = numberValue0.is("number");
-    Float numberValue = numberValue0.getValue();
+    double numberValue = numberValue0.getValue();
 
     Assert.assertEquals("number", type);
     Assert.assertTrue(isNumber);

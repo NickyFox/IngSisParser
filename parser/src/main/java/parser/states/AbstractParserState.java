@@ -147,4 +147,9 @@ public abstract class AbstractParserState implements ParserState, TokenVisitor {
   public void visit(ConstToken token) {
     throw new IllegalGrammarException(token.getValue());
   }
+
+  @Override
+  public void visit(MayorComparisonToken token) {
+    throw new IllegalGrammarException(token.getValue());
+  }
 }

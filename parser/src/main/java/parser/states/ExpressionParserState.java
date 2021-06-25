@@ -31,9 +31,9 @@ public class ExpressionParserState extends AbstractParserState {
   public void visit(NumberValueToken token) {
     checkStateLiteral();
     getTokenProvider().next();
-    this.expressionNode = new IntegerNode(Float.valueOf(token.getValue()));
+    this.expressionNode = new IntegerNode(Double.valueOf(token.getValue()));
     getTokenProvider().get().accept(this);
-    this.expressionNode.setLeft(new IntegerNode(Float.valueOf(token.getValue())));
+    this.expressionNode.setLeft(new IntegerNode(Double.valueOf(token.getValue())));
   }
 
   @Override
@@ -79,6 +79,15 @@ public class ExpressionParserState extends AbstractParserState {
     this.expressionNode =
         new MultiplicationNode(
             null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+  }
+
+  @Override
+  public void visit(MayorComparisonToken token) {
+    checkStateNotLiteral();
+    getTokenProvider().next();
+    this.expressionNode =
+            new MayorComparisonNode(
+                    null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
   }
 
   @Override

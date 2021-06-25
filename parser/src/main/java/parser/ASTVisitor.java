@@ -34,4 +34,6 @@ public interface ASTVisitor {
   void visit(OrNode node);
 
   void visit(IfNode node);
+
+  void visit(MayorComparisonNode node);
 }

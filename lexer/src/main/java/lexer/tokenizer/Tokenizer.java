@@ -72,6 +72,7 @@ public class Tokenizer implements ITokenizer {
     tokenizerStack.push(new Tokenizer(new IfToken()));
     tokenizerStack.push(new Tokenizer(new OpenBracketToken()));
     tokenizerStack.push(new Tokenizer(new ClosingBracketToken()));
+    tokenizerStack.push(new Tokenizer(new MayorComparisonToken()));
 
     // values
     tokenizerStack.push(new Tokenizer(new NumberValueToken()));
@@ -105,6 +106,8 @@ public class Tokenizer implements ITokenizer {
     tokenizerStack.push(new Tokenizer(new OpenBracketToken()));
     tokenizerStack.push(new Tokenizer(new ClosingBracketToken()));
     tokenizerStack.push(new Tokenizer(new ConstToken()));
+    tokenizerStack.push(new Tokenizer(new MayorComparisonToken()));
+
 
     // values
     tokenizerStack.push(new Tokenizer(new NumberValueToken()));
