@@ -15,7 +15,7 @@ import parser.nodes.*;
 
 public class InterpreterTest {
 
-  Lexer lexer = new DefaultLexer("1.0");
+  Lexer lexer = new DefaultLexer("1.1");
   Parser parser = new Parser();
   Console console = new Terminal();
   Memory memory = new LocalStorage();
