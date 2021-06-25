@@ -22,7 +22,7 @@ public class InterpreterTerminalAndLocalStorageTestTest {
 
   @Test
   public void testLocalStorage() {
-    ls.save("some-key", new StringValue("some-string"));
+    ls.save("some-key", new StringValue("some-string"), true);
     Assert.assertTrue(ls.has("some-key"));
     Assert.assertFalse(ls.has("not-some-key"));
     Assert.assertEquals("some-string", ls.read("some-key").getValue());
