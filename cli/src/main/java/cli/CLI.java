@@ -15,16 +15,20 @@ import parser.*;
 import parser.nodes.ASTNode;
 
 public class CLI {
-  public static void main(String[] args, String version, Consumer<String> emitter) {
-    DefaultLexer lexer = new DefaultLexer(version);
+  public static void main(String[] args) {
+    DefaultLexer lexer = new DefaultLexer("1.1");
     Parser parser = new Parser();
     List<String> auxPrint = new ArrayList<>();
+    String read = "let someNumber: number = 1;\n" +
+            "let someString: string = \"hello world \";\n" +
+            "println(someString + someNumber);";
     Interpreter interpreter = new Interpreter(new Terminal(), auxPrint);
     FileReader fileReader = new DefaultFileReader();
-    List<Token> tokenStream = lexer.lex(fileReader.readFile(args[0]));
+    List<Token> tokenStream = lexer.lex(read);
     Provider input = new TokenProvider(tokenStream);
     ASTNode ast = parser.parse(input);
     interpreter.start(ast);
-    interpreter.getEmitter().forEach(emitter::accept);
+    interpreter.getEmitter();
+//    forEach(emitter::accept);
   }
 }

@@ -16,6 +16,15 @@ public class StringValue implements Value {
 
   @Override
   public Value plus(NumberValue value) {
+    String auxString = value.getValue().toString();
+    double self = Double.parseDouble(auxString);
+    if (Double.toString(self) != null) {
+      double ceil = Math.ceil(self);
+      if (self == ceil) {
+        Integer integer = (int) ceil;
+        return new StringValue(v + integer.toString());
+      }
+    }
     return new StringValue(v + value.getValue());
   }
 
