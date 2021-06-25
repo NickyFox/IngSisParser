@@ -42,8 +42,6 @@ public class TypeAssignationParserState extends AbstractParserState {
     this.parseType("boolean");
   }
 
-
-
   public void parseType(String type) {
     if (!hasTypeAssignation) {
       throw new IllegalGrammarException();

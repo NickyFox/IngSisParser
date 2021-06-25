@@ -44,7 +44,7 @@ public class Interpreter implements ASTVisitor {
 
     checkDeclaration(id);
     ExpressionNode expressionNode = declarationNode.getExpressionNode();
-    if (expressionNode != null ) expressionNode.accept(this);
+    if (expressionNode != null) expressionNode.accept(this);
     Value result = null;
     if (!stack.empty()) {
       result = stack.pop();
@@ -52,7 +52,6 @@ public class Interpreter implements ASTVisitor {
     }
 
     memory.save(id, result, isFinal);
-
   }
 
   @Override
@@ -62,7 +61,7 @@ public class Interpreter implements ASTVisitor {
     checkAssignation(id);
     Value value = memory.read(id);
     String type = null;
-    if (value != null)  type = memory.read(id).getType();
+    if (value != null) type = memory.read(id).getType();
 
     assigmentNode.getExpressionNode().accept(this);
     Value result = stack.pop();

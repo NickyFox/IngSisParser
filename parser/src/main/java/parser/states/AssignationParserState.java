@@ -1,7 +1,6 @@
 package parser.states;
 
 import lexer.tokens.AssignationToken;
-import lexer.tokens.EOFToken;
 import lexer.tokens.SemicolonToken;
 import parser.nodes.ASTNode;
 import parser.nodes.ExpressionNode;
