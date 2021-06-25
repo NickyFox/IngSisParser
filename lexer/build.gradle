@@ -2,7 +2,7 @@ plugins {
     id 'printscript.java-common-conventions'
 }
 group 'com.printscript.ingsis'
-version  '1.0.19'
+version  '1.0.20'
 repositories {
     mavenCentral()
 }

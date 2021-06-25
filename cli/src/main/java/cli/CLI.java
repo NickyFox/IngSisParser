@@ -5,10 +5,8 @@ import common.FileReader.FileReader;
 import common.provider.Provider;
 import interpreter.Interpreter;
 import interpreter.Terminal;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 import java.util.function.Consumer;
 import lexer.DefaultLexer;
 import lexer.provider.TokenProvider;

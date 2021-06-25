@@ -5,10 +5,8 @@ import interpreter.value.BooleanValue;
 import interpreter.value.NumberValue;
 import interpreter.value.StringValue;
 import interpreter.value.Value;
-
 import java.util.List;
 import java.util.Stack;
-import java.util.function.Consumer;
 import parser.ASTVisitor;
 import parser.nodes.*;
 
