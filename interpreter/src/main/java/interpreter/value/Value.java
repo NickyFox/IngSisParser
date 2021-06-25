@@ -131,19 +131,19 @@ public interface Value {
 
   default Value lessThan(StringValue value) {
     throw new IllegalGrammarException(
-            "Can not compare a " + this.getType() + " with a " + value.getType());
+        "Can not compare a " + this.getType() + " with a " + value.getType());
   }
   ;
 
   default Value lessThan(NumberValue value) {
     throw new IllegalGrammarException(
-            "Can not compare a " + this.getType() + " with a " + value.getType());
+        "Can not compare a " + this.getType() + " with a " + value.getType());
   }
   ;
 
   default Value lessThan(BooleanValue value) {
     throw new IllegalGrammarException(
-            "Can not compare a " + this.getType() + " with a " + value.getType());
+        "Can not compare a " + this.getType() + " with a " + value.getType());
   }
   ;
 
@@ -168,6 +168,4 @@ public interface Value {
   String getType();
 
   boolean is(String type);
-
-
 }

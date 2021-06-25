@@ -95,8 +95,8 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-            new MinorComparisonNode(
-                    null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+        new MinorComparisonNode(
+            null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
   }
 
   @Override

@@ -56,5 +56,4 @@ public interface TokenVisitor {
   void visit(MayorComparisonToken comparisonToken);
 
   void visit(MinorComparisonToken comparisonToken);
-
 }
