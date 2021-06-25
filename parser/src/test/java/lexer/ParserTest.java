@@ -24,8 +24,8 @@ public class ParserTest {
     ASTNode node = parser.parse(input);
 
     // Generating expected result for input
-    ExpressionNode exprNode = new StringNode("\"some string\"");
-    exprNode.setLeft(new StringNode("\"some string\""));
+    ExpressionNode exprNode = new StringNode("some string");
+    exprNode.setLeft(new StringNode("some string"));
     ProgramNode expected = new ProgramNode();
     expected.add(new DeclarationNode(new IdentifierNode("str"), "string", exprNode, false));
 
@@ -61,8 +61,8 @@ public class ParserTest {
 
     // Generating expected result for input
     ProgramNode expected = new ProgramNode();
-    ExpressionNode strExprNode = new StringNode("\"some string\"");
-    strExprNode.setLeft(new StringNode("\"some string\""));
+    ExpressionNode strExprNode = new StringNode("some string");
+    strExprNode.setLeft(new StringNode("some string"));
 
     expected.add(new DeclarationNode(new IdentifierNode("str"), "string", strExprNode, false));
     ExpressionNode exprNode = new BooleanNode(true);
