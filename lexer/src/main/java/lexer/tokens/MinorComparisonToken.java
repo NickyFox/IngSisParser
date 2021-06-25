@@ -1,8 +1,7 @@
 package lexer.tokens;
 
-import lexer.TokenVisitor;
-
 import java.util.regex.Pattern;
+import lexer.TokenVisitor;
 
 public class MinorComparisonToken extends Token {
 
