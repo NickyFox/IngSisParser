@@ -167,8 +167,21 @@ public class Interpreter implements ASTVisitor {
 
     if (this.stack.size() > 0) {
       Value value = this.stack.pop();
-      emitter.accept(value.getValue().toString());
-      console.log(value.getValue());
+
+      if (value.getType().equals("number")) {
+        String auxString = value.getValue().toString();
+        double self = Double.parseDouble(auxString);
+        if (Double.toString(self) != null) {
+          double ceil = Math.ceil(self);
+          if (self == ceil) {
+            emitter.accept(Double.toString(ceil));
+            console.log((int) ceil);
+          }
+        }
+      } else {
+        emitter.accept(value.getValue().toString());
+        console.log(value.getValue());
+      }
     }
   }
 
