@@ -1,26 +1,25 @@
 package lexer.tokens;
 
+import java.util.regex.Pattern;
 import lexer.TokenVisitor;
 
-import java.util.regex.Pattern;
+public class MayorComparisonToken extends Token {
 
-public class MayorComparisonToken extends Token{
+  public MayorComparisonToken() {
+    super(Pattern.compile(">", Pattern.MULTILINE));
+  }
 
-    public MayorComparisonToken() {
-        super(Pattern.compile(">", Pattern.MULTILINE));
-    }
+  public MayorComparisonToken(String value) {
+    super(Pattern.compile(">", Pattern.MULTILINE), value);
+  }
 
-    public MayorComparisonToken(String value) {
-        super(Pattern.compile(">", Pattern.MULTILINE), value);
-    }
+  @Override
+  public Token withValue(String value) {
+    return new MayorComparisonToken(value);
+  }
 
-    @Override
-    public Token withValue(String value) {
-        return new MayorComparisonToken(value);
-    }
-
-    @Override
-    public void accept(TokenVisitor visitor) {
-        visitor.visit(this);
-    }
+  @Override
+  public void accept(TokenVisitor visitor) {
+    visitor.visit(this);
+  }
 }

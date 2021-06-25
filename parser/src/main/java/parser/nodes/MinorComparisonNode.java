@@ -2,9 +2,9 @@ package parser.nodes;
 
 import parser.ASTVisitor;
 
-public class MayorComparisonNode extends ExpressionNode {
+public class MinorComparisonNode extends ExpressionNode {
 
-  public MayorComparisonNode(ExpressionNode expLeft, ExpressionNode expRight) {
+  public MinorComparisonNode(ExpressionNode expLeft, ExpressionNode expRight) {
     super(expLeft, expRight);
   }
 

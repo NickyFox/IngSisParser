@@ -31,9 +31,13 @@ public class NumberValue implements Value {
 
   @Override
   public Value greaterThan(NumberValue value) {
-    return new BooleanValue(value.getValue() > v);
+    return new BooleanValue(v > value.getValue());
   }
 
+  @Override
+  public Value lessThan(NumberValue value) {
+    return new BooleanValue(v < value.getValue());
+  }
 
   @Override
   public Value divide(NumberValue value) {
@@ -77,6 +81,11 @@ public class NumberValue implements Value {
   @Override
   public Value greaterThan(Value value) {
     return value.greaterThan(this);
+  }
+
+  @Override
+  public Value lessThan(Value value) {
+    return value.lessThan(this);
   }
 
   public Double getValue() {

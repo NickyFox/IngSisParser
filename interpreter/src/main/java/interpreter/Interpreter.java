@@ -116,6 +116,11 @@ public class Interpreter implements ASTVisitor {
   }
 
   @Override
+  public void visit(MinorComparisonNode minorComparisonNode) {
+    operation(minorComparisonNode, Value::lessThan);
+  }
+
+  @Override
   public void visit(IfNode node) {
     node.getCondition().accept(this);
     if ((Boolean) this.stack.pop().getValue()) this.visit(node.getProgram());

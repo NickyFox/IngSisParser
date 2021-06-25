@@ -5,6 +5,7 @@ import common.provider.Provider;
 import lexer.TokenVisitor;
 import lexer.tokens.*;
 import parser.nodes.ASTNode;
+import parser.nodes.MinorComparisonNode;
 
 public abstract class AbstractParserState implements ParserState, TokenVisitor {
 
@@ -150,6 +151,11 @@ public abstract class AbstractParserState implements ParserState, TokenVisitor {
 
   @Override
   public void visit(MayorComparisonToken token) {
+    throw new IllegalGrammarException(token.getValue());
+  }
+
+  @Override
+  public void visit(MinorComparisonToken token) {
     throw new IllegalGrammarException(token.getValue());
   }
 }
