@@ -7,7 +7,6 @@ import interpreter.Interpreter;
 import interpreter.Terminal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import lexer.DefaultLexer;
 import lexer.provider.TokenProvider;
 import lexer.tokens.Token;
@@ -19,9 +18,10 @@ public class CLI {
     DefaultLexer lexer = new DefaultLexer("1.1");
     Parser parser = new Parser();
     List<String> auxPrint = new ArrayList<>();
-    String read = "let someNumber: number = 1;\n" +
-            "let someString: string = \"hello world \";\n" +
-            "println(someString + someNumber);";
+    String read =
+        "let someNumber: number = 1;\n"
+            + "let someString: string = \"hello world \";\n"
+            + "println(someString + someNumber);";
     Interpreter interpreter = new Interpreter(new Terminal(), auxPrint);
     FileReader fileReader = new DefaultFileReader();
     List<Token> tokenStream = lexer.lex(read);
@@ -29,6 +29,6 @@ public class CLI {
     ASTNode ast = parser.parse(input);
     interpreter.start(ast);
     interpreter.getEmitter();
-//    forEach(emitter::accept);
+    //    forEach(emitter::accept);
   }
 }
