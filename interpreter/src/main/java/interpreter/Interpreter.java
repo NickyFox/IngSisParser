@@ -176,6 +176,9 @@ public class Interpreter implements ASTVisitor {
           if (self == ceil) {
             emitter.accept(Double.toString(ceil));
             console.log((int) ceil);
+          } else {
+            emitter.accept(value.getValue().toString());
+            console.log(value.getValue());
           }
         }
       } else {
