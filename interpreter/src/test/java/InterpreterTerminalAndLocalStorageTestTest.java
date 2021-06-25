@@ -35,7 +35,7 @@ public class InterpreterTerminalAndLocalStorageTestTest {
 
     StringValue strValue1 = new StringValue("some-number-");
     Value result1 = strValue1.plus(new NumberValue(1));
-    Assert.assertEquals("some-number-1.0", result1.getValue());
+    Assert.assertEquals("some-number-1", result1.getValue());
 
     StringValue strValue2 = new StringValue("nuequen");
     Value result2 = strValue2.plus((Value) new StringValue("nuequen"));
