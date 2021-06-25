@@ -2,6 +2,8 @@ package parser.nodes;
 
 import parser.ASTVisitor;
 
+import java.util.function.Consumer;
+
 public class PrintNode implements ASTNode {
 
   private ExpressionNode expressionNode;

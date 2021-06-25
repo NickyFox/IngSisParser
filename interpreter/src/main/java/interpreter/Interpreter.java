@@ -6,6 +6,8 @@ import interpreter.value.NumberValue;
 import interpreter.value.StringValue;
 import interpreter.value.Value;
 import java.util.Stack;
+import java.util.function.Consumer;
+
 import parser.ASTVisitor;
 import parser.nodes.*;
 
@@ -14,11 +16,20 @@ public class Interpreter implements ASTVisitor {
   private Stack<Value> stack;
   private Memory<String, Value> memory;
   private Console console;
+  private Consumer<String> emitter;
 
   public Interpreter(Console console, Memory<String, Value> memory) {
     this.stack = new Stack<>();
     this.memory = memory;
     this.console = console;
+  }
+
+  public Interpreter(Console console, Consumer<String> emitter) {
+    this.stack = new Stack<>();
+    this.memory = new LocalStorage();
+    this.console = console;
+    this.emitter = emitter;
+
   }
 
   public Interpreter(Console console) {
@@ -148,6 +159,7 @@ public class Interpreter implements ASTVisitor {
 
     if (this.stack.size() > 0) {
       Value value = this.stack.pop();
+      emitter.accept(value.getValue().toString());
       console.log(value.getValue());
     }
   }
