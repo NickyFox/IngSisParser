@@ -5,6 +5,8 @@ import interpreter.value.BooleanValue;
 import interpreter.value.NumberValue;
 import interpreter.value.StringValue;
 import interpreter.value.Value;
+
+import java.util.List;
 import java.util.Stack;
 import java.util.function.Consumer;
 import parser.ASTVisitor;
@@ -15,7 +17,7 @@ public class Interpreter implements ASTVisitor {
   private Stack<Value> stack;
   private Memory<String, Value> memory;
   private Console console;
-  private Consumer<String> emitter;
+  private List<String> emitter;
 
   public Interpreter(Console console, Memory<String, Value> memory) {
     this.stack = new Stack<>();
@@ -23,7 +25,7 @@ public class Interpreter implements ASTVisitor {
     this.console = console;
   }
 
-  public Interpreter(Console console, Consumer<String> emitter) {
+  public Interpreter(Console console, List<String> emitter) {
     this.stack = new Stack<>();
     this.memory = new LocalStorage();
     this.console = console;
@@ -174,15 +176,15 @@ public class Interpreter implements ASTVisitor {
         if (Double.toString(self) != null) {
           double ceil = Math.ceil(self);
           if (self == ceil) {
-            emitter.accept(Double.toString(ceil));
+            emitter.add(Double.toString(ceil));
             console.log((int) ceil);
           } else {
-            emitter.accept(value.getValue().toString());
+            emitter.add(value.getValue().toString());
             console.log(value.getValue());
           }
         }
       } else {
-        emitter.accept(value.getValue().toString());
+        emitter.add(value.getValue().toString());
         console.log(value.getValue());
       }
     }
@@ -211,5 +213,9 @@ public class Interpreter implements ASTVisitor {
     if (!value.is(type)) {
       throw new IllegalGrammarException(String.format("%s is not of type %s", id, type));
     }
+  }
+
+  public List<String> getEmitter() {
+    return emitter;
   }
 }
