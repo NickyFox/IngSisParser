@@ -29,7 +29,7 @@ public class InterpreterTest {
     ASTNode node = parser.parse(input);
     interpreter.start(node);
     StringValue val = (StringValue) memory.read("str");
-    Assert.assertEquals(val.getValue(), "\"some string\"");
+    Assert.assertEquals(val.getValue(), "some string");
     Assert.assertEquals(val.getType(), "string");
   }
 
@@ -41,7 +41,7 @@ public class InterpreterTest {
     ASTNode node = parser.parse(input);
     interpreter.start(node);
     NumberValue val = (NumberValue) memory.read("sum");
-    Assert.assertEquals(val.getValue(), new Integer(9));
+    Assert.assertEquals(val.getValue(), new Float(9));
   }
 
   @Test
@@ -52,7 +52,7 @@ public class InterpreterTest {
     ASTNode node = parser.parse(input);
     interpreter.start(node);
     NumberValue val = (NumberValue) memory.read("num");
-    Assert.assertEquals(val.getValue(), new Integer(3));
+    Assert.assertEquals(val.getValue(), new Float(3));
   }
 
   @Test(expected = IllegalGrammarException.class)

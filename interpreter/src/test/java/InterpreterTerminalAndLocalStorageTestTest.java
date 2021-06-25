@@ -35,7 +35,7 @@ public class InterpreterTerminalAndLocalStorageTestTest {
 
     StringValue strValue1 = new StringValue("some-number-");
     Value result1 = strValue1.plus(new NumberValue(1));
-    Assert.assertEquals("some-number-1", result1.getValue());
+    Assert.assertEquals("some-number-1.0", result1.getValue());
 
     StringValue strValue2 = new StringValue("nuequen");
     Value result2 = strValue2.plus((Value) new StringValue("nuequen"));
@@ -270,23 +270,23 @@ public class InterpreterTerminalAndLocalStorageTestTest {
   public void interpreterNumberValueTest() {
     NumberValue numberValue1 = new NumberValue(1);
     Value result = numberValue1.plus(new StringValue("value"));
-    Assert.assertEquals("1value", result.getValue());
+    Assert.assertEquals("1.0value", result.getValue());
 
     NumberValue numberValue2 = new NumberValue(1);
     Value result2 = numberValue2.plus(new NumberValue(1));
-    Assert.assertEquals(2, result2.getValue());
+    Assert.assertEquals(2F, result2.getValue());
 
     NumberValue numberValue3 = new NumberValue(1);
     Value result3 = numberValue3.minus(new NumberValue(1));
-    Assert.assertEquals(0, result3.getValue());
+    Assert.assertEquals(0F, result3.getValue());
 
     NumberValue numberValue4 = new NumberValue(1);
     Value result4 = numberValue4.times(new NumberValue(1));
-    Assert.assertEquals(1, result4.getValue());
+    Assert.assertEquals(1F, result4.getValue());
 
     NumberValue numberValue5 = new NumberValue(1);
     Value result5 = numberValue5.divide(new NumberValue(1));
-    Assert.assertEquals(1, result5.getValue());
+    Assert.assertEquals(1F, result5.getValue());
 
     NumberValue numberValue0 = new NumberValue(1);
     String type = numberValue0.getType();
