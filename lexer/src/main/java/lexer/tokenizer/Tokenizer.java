@@ -69,7 +69,6 @@ public class Tokenizer implements ITokenizer {
     tokenizerStack.push(new Tokenizer(new PrintToken()));
     tokenizerStack.push(new Tokenizer(new AndToken()));
     tokenizerStack.push(new Tokenizer(new OrToken()));
-    tokenizerStack.push(new Tokenizer(new IfToken()));
     tokenizerStack.push(new Tokenizer(new OpenBracketToken()));
     tokenizerStack.push(new Tokenizer(new ClosingBracketToken()));
     tokenizerStack.push(new Tokenizer(new MayorComparisonToken()));

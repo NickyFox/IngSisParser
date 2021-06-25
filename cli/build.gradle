@@ -2,7 +2,7 @@ plugins {
     id 'printscript.java-common-conventions'
 }
 
-version  '1.0.16'
+version  '1.0.17'
 group 'com.printscript.ingsis'
 
  repositories {
