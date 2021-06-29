@@ -124,6 +124,10 @@ public class Interpreter implements ASTVisitor {
   public void visit(IfNode node) {
     node.getCondition().accept(this);
     if ((Boolean) this.stack.pop().getValue()) this.visit(node.getProgram());
+    else {
+      ProgramNode elseNode = node.getElseNode();
+      if (elseNode != null) this.visit(elseNode);
+    }
   }
 
   public void operation(ExpressionNode node, CallbackOperation operation) {

@@ -108,6 +108,7 @@ public class Tokenizer implements ITokenizer {
     tokenizerStack.push(new Tokenizer(new ConstToken()));
     tokenizerStack.push(new Tokenizer(new MayorComparisonToken()));
     tokenizerStack.push(new Tokenizer(new MinorComparisonToken()));
+    tokenizerStack.push(new Tokenizer(new ElseToken()));
 
     // values
     tokenizerStack.push(new Tokenizer(new NumberValueToken()));

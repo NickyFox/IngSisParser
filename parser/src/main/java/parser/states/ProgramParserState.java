@@ -1,5 +1,7 @@
 package parser.states;
 
+import common.exeptions.IllegalGrammarException;
+import java.util.List;
 import lexer.tokens.*;
 import parser.nodes.*;
 
@@ -55,8 +57,23 @@ public class ProgramParserState extends AbstractParserState {
   @Override
   public void visit(IfToken token) {
     getTokenProvider().next();
-    programNode.add(new IfParserState().parse(getTokenProvider()));
+    programNode.add(new IfElseParserState().parse(getTokenProvider()));
     getTokenProvider().get().accept(this);
+  }
+
+  @Override
+  public void visit(ElseToken token) {
+    getTokenProvider().next();
+
+    List<ASTNode> nodes = programNode.getNodes();
+    ASTNode ifNode = nodes.get(nodes.size() - 1);
+
+    if (!(ifNode instanceof IfNode)) {
+      throw new IllegalGrammarException("No if statement");
+    }
+
+    ((IfNode) ifNode)
+        .setElseNode(((IfNode) new IfElseParserState().parse(getTokenProvider())).getProgram());
   }
 
   @Override
