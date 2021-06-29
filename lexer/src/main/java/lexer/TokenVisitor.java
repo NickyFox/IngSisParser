@@ -47,6 +47,8 @@ public interface TokenVisitor {
 
   void visit(IfToken token);
 
+  void visit(ElseToken token);
+
   void visit(OpenBracketToken token);
 
   void visit(ClosingBracketToken token);

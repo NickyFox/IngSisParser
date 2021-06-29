@@ -134,6 +134,11 @@ public abstract class AbstractParserState implements ParserState, TokenVisitor {
   }
 
   @Override
+  public void visit(ElseToken token) {
+    throw new IllegalGrammarException(token.getValue());
+  }
+
+  @Override
   public void visit(OpenBracketToken token) {
     throw new IllegalGrammarException(token.getValue());
   }

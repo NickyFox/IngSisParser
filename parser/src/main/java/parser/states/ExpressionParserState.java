@@ -127,7 +127,6 @@ public class ExpressionParserState extends AbstractParserState {
   @Override
   public void visit(ClosingParenthesisToken token) {
     checkStateNotLiteral();
-    getTokenProvider().next();
   }
 
   @Override
