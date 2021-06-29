@@ -108,8 +108,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-        new MayorComparisonNode(
-            null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+            (ExpressionNode)
+                    new ExpressionParserState(new MayorComparisonNode(null, this.expressionNode))
+                            .parse(getTokenProvider());
   }
 
   @Override
@@ -117,8 +118,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-        new MinorComparisonNode(
-            null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+            (ExpressionNode)
+                    new ExpressionParserState(new MinorComparisonNode(null, this.expressionNode))
+                            .parse(getTokenProvider());
   }
 
   @Override
@@ -126,7 +128,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-        new AndNode(null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+            (ExpressionNode)
+                    new ExpressionParserState(new AndNode(null, this.expressionNode))
+                            .parse(getTokenProvider());
   }
 
   @Override
@@ -134,7 +138,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-        new OrNode(null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+            (ExpressionNode)
+                    new ExpressionParserState(new OrNode(null, this.expressionNode))
+                            .parse(getTokenProvider());
   }
 
   @Override
