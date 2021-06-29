@@ -158,7 +158,7 @@ public class Interpreter implements ASTVisitor {
 
   @Override
   public void visit(IdentifierNode identifierNode) {
-    checkAssignation(identifierNode.getIdentifier());
+    checkDefinition(identifierNode.getIdentifier());
     stack.push(memory.read(identifierNode.getIdentifier()));
   }
 
@@ -200,6 +200,12 @@ public class Interpreter implements ASTVisitor {
   private void checkDeclaration(String id) {
     if (memory.has(id)) {
       throw new IllegalGrammarException(String.format("variable %s is already defined", id));
+    }
+  }
+
+  private void checkDefinition(String id) {
+    if (!memory.has(id)) {
+      throw new IllegalGrammarException(String.format("variable %s is not defined", id));
     }
   }
 

@@ -1,9 +1,6 @@
 package parser.states;
 
-import lexer.tokens.EOFToken;
-import lexer.tokens.ElseToken;
-import lexer.tokens.OpenBracketToken;
-import lexer.tokens.OpenParenthesisToken;
+import lexer.tokens.*;
 import parser.nodes.ASTNode;
 import parser.nodes.ExpressionNode;
 import parser.nodes.IfNode;
@@ -42,4 +39,16 @@ public class IfElseParserState extends AbstractParserState {
 
   @Override
   public void visit(ElseToken token) {}
+
+  @Override
+  public void visit(LetToken token) {}
+
+  @Override
+  public void visit(PrintToken token) {}
+
+  @Override
+  public void visit(IfToken token) {}
+
+  @Override
+  public void visit(ConstToken token) {}
 }
