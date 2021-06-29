@@ -108,9 +108,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-            (ExpressionNode)
-                    new ExpressionParserState(new MayorComparisonNode(null, this.expressionNode))
-                            .parse(getTokenProvider());
+        (ExpressionNode)
+            new ExpressionParserState(new MayorComparisonNode(null, this.expressionNode))
+                .parse(getTokenProvider());
   }
 
   @Override
@@ -118,9 +118,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-            (ExpressionNode)
-                    new ExpressionParserState(new MinorComparisonNode(null, this.expressionNode))
-                            .parse(getTokenProvider());
+        (ExpressionNode)
+            new ExpressionParserState(new MinorComparisonNode(null, this.expressionNode))
+                .parse(getTokenProvider());
   }
 
   @Override
@@ -128,9 +128,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-            (ExpressionNode)
-                    new ExpressionParserState(new AndNode(null, this.expressionNode))
-                            .parse(getTokenProvider());
+        (ExpressionNode)
+            new ExpressionParserState(new AndNode(null, this.expressionNode))
+                .parse(getTokenProvider());
   }
 
   @Override
@@ -138,9 +138,9 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-            (ExpressionNode)
-                    new ExpressionParserState(new OrNode(null, this.expressionNode))
-                            .parse(getTokenProvider());
+        (ExpressionNode)
+            new ExpressionParserState(new OrNode(null, this.expressionNode))
+                .parse(getTokenProvider());
   }
 
   @Override

@@ -54,7 +54,7 @@ public class NumberValue implements Value {
       throw new ArithmeticException("Can not divide by zero");
     }
 
-    return new NumberValue(value.getValue()/v);
+    return new NumberValue(value.getValue() / v);
   }
 
   @Override

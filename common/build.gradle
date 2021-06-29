@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.printscript.ingsis'
- '1.0.31'
+version     '1.0.31'
 repositories {
     mavenCentral()
 }
