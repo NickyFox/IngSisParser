@@ -24,7 +24,7 @@ jobs:
         run: ./gradlew publish
         env:
           GITHUB_USERNAME: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: "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"
         
   format:
     runs-on: ubuntu-latest
