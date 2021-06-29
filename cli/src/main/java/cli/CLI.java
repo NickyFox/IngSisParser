@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 import lexer.DefaultLexer;
 import lexer.provider.TokenProvider;
 import lexer.tokens.Token;
-import parser.*;
+import parser.Parser;
 import parser.nodes.ASTNode;
 
 public class CLI {

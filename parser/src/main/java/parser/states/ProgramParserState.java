@@ -74,6 +74,8 @@ public class ProgramParserState extends AbstractParserState {
 
     ((IfNode) ifNode)
         .setElseNode(((IfNode) new IfElseParserState().parse(getTokenProvider())).getProgram());
+
+    getTokenProvider().get().accept(this);
   }
 
   @Override

@@ -13,6 +13,11 @@ public class ExpressionParserState extends AbstractParserState {
     this.literal = false;
   }
 
+  public ExpressionParserState(ExpressionNode expressionNode) {
+    this.literal = false;
+    this.expressionNode = expressionNode;
+  }
+
   @Override
   public ExpressionNode getNode() {
     return this.expressionNode;
@@ -22,54 +27,60 @@ public class ExpressionParserState extends AbstractParserState {
   public void visit(StringValueToken token) {
     checkStateLiteral();
     getTokenProvider().next();
-    this.expressionNode = new StringNode(token.getValue());
+    StringNode node = new StringNode(token.getValue());
+    if (this.expressionNode == null) this.expressionNode = node;
+    else this.expressionNode.setLeft(node);
     getTokenProvider().get().accept(this);
-    this.expressionNode.setLeft(new StringNode(token.getValue()));
   }
 
   @Override
   public void visit(NumberValueToken token) {
     checkStateLiteral();
     getTokenProvider().next();
-    this.expressionNode = new IntegerNode(Double.valueOf(token.getValue()));
+    IntegerNode node = new IntegerNode(Double.parseDouble(token.getValue()));
+    if (this.expressionNode == null) this.expressionNode = node;
+    else this.expressionNode.setLeft(node);
     getTokenProvider().get().accept(this);
-    this.expressionNode.setLeft(new IntegerNode(Double.valueOf(token.getValue())));
   }
 
   @Override
   public void visit(BooleanValueToken token) {
     checkStateLiteral();
     getTokenProvider().next();
-    this.expressionNode = new BooleanNode(Boolean.parseBoolean(token.getValue()));
+    BooleanNode node = new BooleanNode(Boolean.parseBoolean(token.getValue()));
+    if (this.expressionNode == null) this.expressionNode = node;
+    else this.expressionNode.setLeft(node);
     getTokenProvider().get().accept(this);
-    this.expressionNode.setLeft(new BooleanNode(Boolean.parseBoolean(token.getValue())));
   }
 
   @Override
   public void visit(IdentifierToken token) {
     checkStateLiteral();
     getTokenProvider().next();
-    this.expressionNode = new IdentifierNode(token.getValue());
+    IdentifierNode node = new IdentifierNode(token.getValue());
+    if (this.expressionNode == null) this.expressionNode = node;
+    else this.expressionNode.setLeft(node);
     getTokenProvider().get().accept(this);
-    this.expressionNode.setLeft(new IdentifierNode(token.getValue()));
   }
 
   @Override
   public void visit(PlusToken token) {
     checkStateNotLiteral();
     getTokenProvider().next();
-    this.expressionNode =
-        new AdditionNode(
-            null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+    ExpressionNode node = this.expressionNode;
+    this.expressionNode = new AdditionNode(null, null);
+    this.expressionNode.setRight(new ExpressionParserState().parse(getTokenProvider()));
+    this.expressionNode.setLeft(node);
   }
 
   @Override
   public void visit(MinusToken token) {
     checkStateNotLiteral();
     getTokenProvider().next();
-    this.expressionNode =
-        new SubtractionNode(
-            null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+    ExpressionNode node = this.expressionNode;
+    this.expressionNode = new SubtractionNode(null, null);
+    this.expressionNode.setRight(new ExpressionParserState().parse(getTokenProvider()));
+    this.expressionNode.setLeft(node);
   }
 
   @Override
@@ -77,8 +88,19 @@ public class ExpressionParserState extends AbstractParserState {
     checkStateNotLiteral();
     getTokenProvider().next();
     this.expressionNode =
-        new MultiplicationNode(
-            null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
+        (ExpressionNode)
+            new ExpressionParserState(new MultiplicationNode(null, this.expressionNode))
+                .parse(getTokenProvider());
+  }
+
+  @Override
+  public void visit(DivisionToken token) {
+    checkStateNotLiteral();
+    getTokenProvider().next();
+    this.expressionNode =
+        (ExpressionNode)
+            new ExpressionParserState(new DivisionNode(null, this.expressionNode))
+                .parse(getTokenProvider());
   }
 
   @Override
@@ -96,15 +118,6 @@ public class ExpressionParserState extends AbstractParserState {
     getTokenProvider().next();
     this.expressionNode =
         new MinorComparisonNode(
-            null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
-  }
-
-  @Override
-  public void visit(DivisionToken token) {
-    checkStateNotLiteral();
-    getTokenProvider().next();
-    this.expressionNode =
-        new DivisionNode(
             null, (ExpressionNode) new ExpressionParserState().parse(getTokenProvider()));
   }
 
