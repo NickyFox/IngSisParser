@@ -15,28 +15,16 @@ import parser.*;
 import parser.nodes.ASTNode;
 
 public class CLI {
-//  public static void main(String[] args, String version, Consumer<String> emitter) {
-//    DefaultLexer lexer = new DefaultLexer(version);
-//    Parser parser = new Parser();
-//    List<String> auxPrint = new ArrayList<>();
-//    Interpreter interpreter = new Interpreter(new Terminal(), auxPrint);
-//    FileReader fileReader = new DefaultFileReader();
-//    List<Token> tokenStream = lexer.lex(fileReader.readFile(args[0]));
-//    Provider input = new TokenProvider(tokenStream);
-//    ASTNode ast = parser.parse(input);
-//    interpreter.start(ast);
-//    interpreter.getEmitter().forEach(emitter::accept);
-//  }
-  public static void main(String[] args) {
-    DefaultLexer lexer = new DefaultLexer("1.1");
-    String text = "if(true) { println(\"hola\"); } else { println(123); }";
+  public static void main(String[] args, String version, Consumer<String> emitter) {
+    DefaultLexer lexer = new DefaultLexer(version);
     Parser parser = new Parser();
     List<String> auxPrint = new ArrayList<>();
     Interpreter interpreter = new Interpreter(new Terminal(), auxPrint);
     FileReader fileReader = new DefaultFileReader();
-    List<Token> tokenStream = lexer.lex(text);
+    List<Token> tokenStream = lexer.lex(fileReader.readFile(args[0]));
     Provider input = new TokenProvider(tokenStream);
     ASTNode ast = parser.parse(input);
     interpreter.start(ast);
+    interpreter.getEmitter().forEach(emitter::accept);
   }
 }
