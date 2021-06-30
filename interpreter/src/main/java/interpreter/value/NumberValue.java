@@ -40,12 +40,22 @@ public class NumberValue implements Value {
 
   @Override
   public Value greaterThan(NumberValue value) {
-    return new BooleanValue(v > value.getValue());
+    return new BooleanValue(value.getValue() > v);
+  }
+
+  @Override
+  public Value greaterEqualThan(NumberValue value) {
+    return new BooleanValue(value.getValue() >= v);
   }
 
   @Override
   public Value lessThan(NumberValue value) {
-    return new BooleanValue(v < value.getValue());
+    return new BooleanValue(value.getValue() < v);
+  }
+
+  @Override
+  public Value lessEqualThan(NumberValue value) {
+    return new BooleanValue(value.getValue() < v);
   }
 
   @Override
@@ -93,8 +103,18 @@ public class NumberValue implements Value {
   }
 
   @Override
+  public Value greaterEqualThan(Value value) {
+    return value.greaterEqualThan(this);
+  }
+
+  @Override
   public Value lessThan(Value value) {
     return value.lessThan(this);
+  }
+
+  @Override
+  public Value lessEqualThan(Value value) {
+    return value.lessEqualThan(this);
   }
 
   public Double getValue() {

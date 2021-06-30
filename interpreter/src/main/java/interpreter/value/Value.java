@@ -129,6 +129,24 @@ public interface Value {
   }
   ;
 
+  default Value greaterEqualThan(StringValue value) {
+    throw new IllegalGrammarException(
+        "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
+  default Value greaterEqualThan(NumberValue value) {
+    throw new IllegalGrammarException(
+        "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
+  default Value greaterEqualThan(BooleanValue value) {
+    throw new IllegalGrammarException(
+        "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
   default Value lessThan(StringValue value) {
     throw new IllegalGrammarException(
         "Can not compare a " + this.getType() + " with a " + value.getType());
@@ -147,6 +165,24 @@ public interface Value {
   }
   ;
 
+  default Value lessEqualThan(StringValue value) {
+    throw new IllegalGrammarException(
+        "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
+  default Value lessEqualThan(NumberValue value) {
+    throw new IllegalGrammarException(
+        "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
+  default Value lessEqualThan(BooleanValue value) {
+    throw new IllegalGrammarException(
+        "Can not compare a " + this.getType() + " with a " + value.getType());
+  }
+  ;
+
   Value divide(Value value);
 
   Value times(Value value);
@@ -160,6 +196,10 @@ public interface Value {
   Value or(Value value);
 
   Value greaterThan(Value value);
+
+  Value greaterEqualThan(Value value);
+
+  Value lessEqualThan(Value value);
 
   Value lessThan(Value value);
 

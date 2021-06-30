@@ -116,6 +116,16 @@ public class Interpreter implements ASTVisitor {
   }
 
   @Override
+  public void visit(MayorIgualComparisonNode mayorIgualComparisonNode) {
+    operation(mayorIgualComparisonNode, Value::greaterEqualThan);
+  }
+
+  @Override
+  public void visit(MinorIgualComparisonNode minorIgualComparisonNode) {
+    operation(minorIgualComparisonNode, Value::lessEqualThan);
+  }
+
+  @Override
   public void visit(MinorComparisonNode minorComparisonNode) {
     operation(minorComparisonNode, Value::lessThan);
   }

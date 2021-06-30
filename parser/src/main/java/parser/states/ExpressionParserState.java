@@ -124,6 +124,26 @@ public class ExpressionParserState extends AbstractParserState {
   }
 
   @Override
+  public void visit(MayorIgualComparisonToken token) {
+    checkStateNotLiteral();
+    getTokenProvider().next();
+    this.expressionNode =
+        (ExpressionNode)
+            new ExpressionParserState(new MayorIgualComparisonNode(null, this.expressionNode))
+                .parse(getTokenProvider());
+  }
+
+  @Override
+  public void visit(MinorIgualComparisonToken token) {
+    checkStateNotLiteral();
+    getTokenProvider().next();
+    this.expressionNode =
+        (ExpressionNode)
+            new ExpressionParserState(new MinorIgualComparisonNode(null, this.expressionNode))
+                .parse(getTokenProvider());
+  }
+
+  @Override
   public void visit(AndToken token) {
     checkStateNotLiteral();
     getTokenProvider().next();

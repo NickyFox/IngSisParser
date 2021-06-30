@@ -38,4 +38,8 @@ public interface ASTVisitor {
   void visit(MayorComparisonNode node);
 
   void visit(MinorComparisonNode node);
+
+  void visit(MayorIgualComparisonNode node);
+
+  void visit(MinorIgualComparisonNode node);
 }

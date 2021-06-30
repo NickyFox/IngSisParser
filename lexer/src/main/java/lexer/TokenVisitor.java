@@ -58,4 +58,8 @@ public interface TokenVisitor {
   void visit(MayorComparisonToken comparisonToken);
 
   void visit(MinorComparisonToken comparisonToken);
+
+  void visit(MayorIgualComparisonToken token);
+
+  void visit(MinorIgualComparisonToken token);
 }

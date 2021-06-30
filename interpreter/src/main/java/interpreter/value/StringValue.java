@@ -64,6 +64,16 @@ public class StringValue implements Value {
   }
 
   @Override
+  public Value greaterEqualThan(Value value) {
+    return value.greaterEqualThan(this);
+  }
+
+  @Override
+  public Value lessEqualThan(Value value) {
+    return value.lessEqualThan(this);
+  }
+
+  @Override
   public Value lessThan(Value value) {
     return value.lessThan(this);
   }

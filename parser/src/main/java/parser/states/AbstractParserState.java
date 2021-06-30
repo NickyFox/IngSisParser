@@ -162,4 +162,14 @@ public abstract class AbstractParserState implements ParserState, TokenVisitor {
   public void visit(MinorComparisonToken token) {
     throw new IllegalGrammarException(token.getValue());
   }
+
+  @Override
+  public void visit(MayorIgualComparisonToken token) {
+    throw new IllegalGrammarException(token.getValue());
+  }
+
+  @Override
+  public void visit(MinorIgualComparisonToken token) {
+    throw new IllegalGrammarException(token.getValue());
+  }
 }
