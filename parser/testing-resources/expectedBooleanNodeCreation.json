@@ -1,0 +1,19 @@
+{
+  "nodes": [
+    {
+      "identifierNode": {
+        "value": null,
+        "line": 0,
+        "column": 0,
+        "identifier": "bo"
+      },
+      "type": "boolean",
+      "expressionNode": {
+        "value": true,
+        "line": 0,
+        "column": 0
+      },
+      "final": false
+    }
+  ]
+}
