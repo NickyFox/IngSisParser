@@ -2,11 +2,12 @@ package lexer;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.FileReader;
 import java.util.List;
+import java.util.Scanner;
 import lexer.provider.TokenProvider;
 import lexer.tokenizer.Tokenizer;
-import lexer.tokenizer.state.InvalidState;
 import lexer.tokenizer.state.TokenizerState;
 import lexer.tokenizer.state.ValidState;
 import lexer.tokens.Token;
@@ -16,8 +17,7 @@ import org.junit.Test;
 public class LexerTest {
 
   Lexer lexer = new DefaultLexer("1.0");
-  String declaration = "let str: string = \"some string\";";
-  List<Token> tokens = lexer.lex(declaration);
+  ObjectMapper objectParser = new ObjectMapper();
 
   @Test
   public void createLexer() {
@@ -26,22 +26,46 @@ public class LexerTest {
   }
 
   @Test
-  public void lex() {
-    for (Token x : tokens) {
-      System.out.println(x.getValue());
-    }
-    System.out.println(tokens);
-    Assert.assertEquals(tokens.size(), 8);
+  public void createLexer2() {
+    Lexer lexer = new DefaultLexer("1.1");
+    assertNotNull(lexer);
   }
 
   @Test
-  public void invalidStateToString() {
-    System.out.println(tokens.get(0).toString());
-    Assert.assertEquals(new InvalidState(tokens.get(0)).toString(), "InvalidState{token=let}");
+  public void lex() {
+    String declaration = "let str: string = \"someString\";";
+    List<Token> tokens = lexer.lex(declaration);
+
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(
+              tokens, "testing-resources/expectedTokenListForStringDeclaration.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
+
+  @Test
+  public void lexBooleanDeclarationWithAndToken() {
+    String declaration = "let bl: boolean = true && false;";
+    List<Token> tokens = lexer.lex(declaration);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(
+              tokens, "testing-resources/expectedTokenListForBooleanDeclaration.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
   }
 
   @Test
   public void validStateToString() {
+    String declaration = "let bl: boolean = true && false;";
+    List<Token> tokens = lexer.lex(declaration);
     TokenizerState state = new ValidState(tokens.get(0));
     Tokenizer tknzr = new Tokenizer(state);
     Assert.assertNotNull(tknzr.toString());
@@ -49,6 +73,8 @@ public class LexerTest {
 
   @Test
   public void lexerTokenProvider() {
+    String declaration = "let bl: boolean = true && false;";
+    List<Token> tokens = lexer.lex(declaration);
     TokenProvider tp = new TokenProvider(tokens);
     Assert.assertTrue(tp.hasNext());
     Assert.assertEquals(tp.get(), tokens.get(0));
@@ -57,38 +83,123 @@ public class LexerTest {
   }
 
   @Test
-  public void lexDifferentDeclarations() {
-    String declaration1 = "let str: string = \"some string\";";
+  public void lexStringSumDeclarations() {
+    String declaration1 = "let str: string = \"someString\" + \"someString\" ;";
     List<Token> tokens1 = lexer.lex(declaration1);
-    Assert.assertEquals(tokens1.size(), 8);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(
+              tokens1, "testing-resources/expectedTokenListForStringSumDeclaration.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
 
-    String declaration2 = "let bool: boolean = true;";
-    List<Token> tokens2 = lexer.lex(declaration2);
-    Assert.assertEquals(tokens2.size(), 8);
+  @Test
+  public void lexBooleanDeclarationsWithoutTokens() {
+    String declaration1 = "let bool: boolean = true;";
+    List<Token> tokens1 = lexer.lex(declaration1);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(
+              tokens1, "testing-resources/lexBooleanDeclarationsWithoutTokens.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
 
-    String declaration3 = "let bool: boolean = (2-2) != 0;";
-    List<Token> tokens3 = lexer.lex(declaration3);
-    Assert.assertEquals(tokens3.size(), 12);
+  @Test
+  public void lexBooleanDeclarationsWithOrToken() {
+    String declaration1 = "let bool: boolean = true || false;";
+    List<Token> tokens1 = lexer.lex(declaration1);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(
+              tokens1, "testing-resources/lexBooleanDeclarationsWithOrToken.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
 
-    String declaration4 = "let str: string = \"some string\" + \"some string\";";
+  @Test
+  public void lexBooleanDeclarationWithNotEquals() {
+    String declaration = "let bool: boolean = (2-2) != 0;";
+    List<Token> tokens = lexer.lex(declaration);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(
+              tokens, "testing-resources/lexBooleanDeclarationWithNotEquals.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
+
+  @Test
+  public void lexStringPlusNumberDeclarations() {
+    String declaration4 = "let str: string = \"someString\" + 3;";
     List<Token> tokens4 = lexer.lex(declaration4);
-    Assert.assertEquals(tokens4.size(), 10);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(
+              tokens4, "testing-resources/lexStringPlusNumberDeclarations.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
 
-    String declaration5 = "let bool: boolean = true || true;";
-    List<Token> tokens5 = lexer.lex(declaration5);
-    Assert.assertEquals(tokens5.size(), 10);
-
-    String declaration6 = "let bool: boolean = true && true;";
-    List<Token> tokens6 = lexer.lex(declaration6);
-    Assert.assertEquals(tokens6.size(), 10);
-
+  @Test
+  public void lexArithmeticDeclarations() {
     String declaration7 = "let num: number = (1 * 2)/ 2;";
     List<Token> tokens7 = lexer.lex(declaration7);
-    Assert.assertEquals(tokens7.size(), 14);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(tokens7, "testing-resources/lexArithmeticDeclarations.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
 
-    String declaration8 = "if(true) {print(\"some string\");};";
+  @Test
+  public void lexPrintDeclarations() {
+    String declaration8 = "if(true) {print(\"someString\");};";
     List<Token> tokens8 = lexer.lex(declaration8);
-    List<Token> expectedResult = new ArrayList<>();
-    Assert.assertEquals(tokens8.size(), 13);
+    try {
+      boolean result =
+          checkNodeMatchesFileResult(tokens8, "testing-resources/lexPrintDeclarations.json");
+      Assert.assertTrue(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.assertEquals(false, true);
+    }
+  }
+
+  /** Returns true if expected matches current */
+  private boolean checkNodeMatchesFileResult(List<Token> tokens, String url) {
+    try {
+      String actualResult = objectParser.writeValueAsString(tokens);
+      FileReader fr = new FileReader(url);
+      Scanner scanner = new Scanner(fr);
+      String expectedResult = "";
+      while (scanner.hasNext()) {
+        expectedResult = expectedResult + scanner.next();
+      }
+      System.out.println(actualResult);
+      System.out.println(expectedResult);
+      return actualResult.equals(expectedResult);
+    } catch (Exception e) {
+      return false;
+    }
   }
 }

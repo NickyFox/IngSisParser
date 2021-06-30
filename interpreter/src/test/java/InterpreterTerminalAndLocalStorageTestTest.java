@@ -303,4 +303,76 @@ public class InterpreterTerminalAndLocalStorageTestTest {
     NumberValue numberValue5 = new NumberValue(0);
     Value result5 = numberValue5.divide(new NumberValue(1));
   }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingGreaterWithBoolean() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.greaterThan(new BooleanValue(true));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingGreaterWithString() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.greaterThan(new StringValue("other"));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingGreaterWithNumber() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.greaterThan(new NumberValue(3));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingGreaterEqualWithBoolean() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.greaterEqualThan(new BooleanValue(true));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingGreaterEqualWithString() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.greaterEqualThan(new StringValue("other"));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingGreaterEqualWithNumber() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.greaterEqualThan(new NumberValue(3));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingLessWithBoolean() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.lessThan(new BooleanValue(true));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingLessWithString() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.lessThan(new StringValue("other"));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingLessWithNumber() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.lessThan(new NumberValue(3));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingLessEqualWithBoolean() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.lessEqualThan(new BooleanValue(true));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingLessEqualWithString() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.lessEqualThan(new StringValue("other"));
+  }
+
+  @Test(expected = IllegalGrammarException.class)
+  public void grammarExceptionWithStringValueUsingMinusEqualWithNumber() {
+    StringValue strValue1 = new StringValue("some");
+    strValue1.lessEqualThan(new NumberValue(3));
+  }
 }

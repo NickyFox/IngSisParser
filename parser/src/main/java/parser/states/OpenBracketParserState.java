@@ -47,12 +47,12 @@ public class OpenBracketParserState extends AbstractParserState {
     getTokenProvider().get().accept(this);
   }
 
-  @Override
-  public void visit(IfToken token) {
-    getTokenProvider().next();
-    programNode.add(new IfElseParserState().parse(getTokenProvider()));
-    getTokenProvider().get().accept(this);
-  }
+  //  @Override
+  //  public void visit(IfToken token) {
+  //    getTokenProvider().next();
+  //    programNode.add(new IfElseParserState().parse(getTokenProvider()));
+  //    getTokenProvider().get().accept(this);
+  //  }
 
   @Override
   public void visit(SemicolonToken token) {
